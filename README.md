@@ -2,21 +2,22 @@
 
 ## Project Description
 
-**Project Name:** *[Your project name]*
+**Project Name:** *RoadFlow*
 
-**Customer Name:** *[Your customer's name]*
+**Customer Name:** *Oleksii Novikov*
 
-**Student Full Name:** *[Your full name. This helps match your repository to you, even if your GitHub handle does not identify you.]*
+**Student Full Name:** *Kim Gustafsson*
 
 ### Project Aim and Objectives
 
-*[A short description of your project's goals and benefits. Bullet points or 1–2 paragraphs.]*
+*The goal with RoadFlow is to successfully deliver a software that identifies vehicles on public-roads using AI for object-identification. With those detections the software is going to create statistics, that will be used to visualise congestion on roads over-time. This software is intended to be used as a situational-awarness prototype for authorities or companies.*
 
 ### User Personas
 
 | Name | Characteristics | Needs and Expectations | How will they use the system? |
 |---|---|---|---|
 | *[Name]* | *[Age, background, technical skill level, etc.]* | *[What they need from the system]* | *[How they'll interact with it]* |
+
 
 ### Software Requirements
 
