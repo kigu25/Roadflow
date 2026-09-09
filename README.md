@@ -25,12 +25,15 @@
 ### Software Requirements
 
 **Functional Requirements**
-- *[Requirement 1]*
-- *[Requirement 2]*
+- *Multi-source camera acqusition and continious archive.*
+- *AI-vehicle detection and counting.*
+- *Interactive web map and historical timeline.*
+
 
 **Non-Functional Requirements**
-- *[Requirement 1]*
-- *[Requirement 2]*
+- *System should tolerate missing images & temporary source unavailability.*
+- *The map should remian responsive while browsing prototype dataset.*
+- *Should at least be capable to run locally.*
 
 ---
 
