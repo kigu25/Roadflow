@@ -17,9 +17,9 @@
 | Name | Characteristics | Needs and Expectations | How will they use the system? |
 |---|---|---|---|
 | *[Name]* | *[Age, background, technical skill level, etc.]* | *[What they need from the system]* | *[How they'll interact with it]* |
-| *Anna* | *43, Trafic analyst at the transport authority, familiar with a computer but not advanced.* | *Need reliable traffic congestion data to plan road maintenence correctly.* | *Uses the time-slider located next to the map in the dashboard to analyse and gather statistics about what (days and time) the road is most congested.* |
+| *Anna* | *43, Trafic analyst at the transport authority, familiar with a computer but not advanced.* | *Need reliable traffic congestion data to plan road maintenence correctly & effectively.* | *Will mostly use the time-slider located next to the map in the dashboard, to get a quick overview of how trafic changes over time & see trafic congestion patterns.* |
 | *Johan* | *37, Roadplanner at the transport authority. Good computer knowledge, but not a programmer.* | *Needs a reliable heatmap and correct data.* | *Will be using the heatmap and and needs some raw traffic-data.* |
-
+| *Sven* | *39, Road trafic management, an expert in his specific field of work.* | *Sven will us the heatmap to see where trafic is congested in realtime and can use that info to re-route trafic. He also requests to see specific cameras latest pictures if possible.* | 
 
 
 ### Software Requirements
