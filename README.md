@@ -10,7 +10,7 @@
 
 ### Project Aim and Objectives
 
-*The goal with RoadFlow is to successfully deliver a software that identifies vehicles on public-roads using AI for object-identification. With those detections the software is going to create statistics, that will be used to visualise congestion on roads over-time. This software is intended to be used as a situational-awarness prototype for authorities or companies.*
+*The goal with RoadFlow is to successfully deliver a software that identifies vehicles on public-roads using AI for object-identification. With those detections the software will archive the images and related metadata & create statistics. These statistics will be used to visualise congestion on roads over-time in a map/heatmap. RoadFlow is intended to be used as a situational-awarness prototype for authorities or companies.*
 
 ### User Personas
 
