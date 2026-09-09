@@ -1,8 +1,19 @@
 # KDE directory preferences
 .directory
 
+
 # Linux trash folder
 .Trash-*<Paste>
 
 # macOS DS_Store files
 .DS_Store
+
+#Virtual enviroment
+.venv/
+venv/
+
+#Cache
+__pycache__/
+
+#Env variables
+.env
