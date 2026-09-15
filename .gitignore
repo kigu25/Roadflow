@@ -17,3 +17,7 @@ __pycache__/
 
 #Env variables
 .env
+
+
+#DB
+/db_config
