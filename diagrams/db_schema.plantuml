@@ -4,18 +4,20 @@ top to bottom direction
 
 entity Camera {
     camera_id <<key>>
-    coordinates
+    trafikverket_id
+    latitude
+    longitude
 }
 
 entity photo{
     photo_id <<key>>
     camera_id
-    timestamp
-    org_img_searchpath
+    photo_time
+    img_searchpath
 }
 
-entity analyzed_img{
-    analyzed_id<<key>>
+entity analysis{
+    analysis_id<<key>>
     photo_id
     nr_detected_vehicle
     analyzed_img_searchpath
@@ -23,10 +25,13 @@ entity analyzed_img{
 
 entity detection{
     detection_id<<key>>
-    analyzed_id
+    analysis_id
     vehicle_class
     detection_confidence
-    bounding_box_coordinates
+    bounding_x1
+    bounding_y1
+    bounding_x2
+    bounding_y2
 }
 
 
@@ -44,8 +49,8 @@ relationship contains {
 Camera -1- takes
 takes -M- photo
 photo -1- produces
-produces -01- analyzed_img
-analyzed_img -1- contains
+produces -01- analysis
+analysis -1- contains
 contains -M- detection
 
 
