@@ -1,0 +1,53 @@
+@startchen E/R Diagram for RoadFlow Database
+top to bottom direction
+
+
+entity Camera {
+    camera_id <<key>>
+    coordinates
+}
+
+entity photo{
+    photo_id <<key>>
+    camera_id
+    timestamp
+    org_img_searchpath
+}
+
+entity analyzed_img{
+    analyzed_id<<key>>
+    photo_id
+    nr_detected_vehicle
+    analyzed_img_searchpath
+}
+
+entity detection{
+    detection_id<<key>>
+    analyzed_id
+    vehicle_class
+    detection_confidence
+    bounding_box_coordinates
+}
+
+
+relationship takes{
+}
+
+relationship produces{
+}
+
+relationship contains {
+
+}
+
+
+Camera -1- takes
+takes -M- photo
+photo -1- produces
+produces -01- analyzed_img
+analyzed_img -1- contains
+contains -M- detection
+
+
+
+@endchen
