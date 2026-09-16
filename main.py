@@ -1,15 +1,14 @@
 from dotenv import load_dotenv
 from DB_config.DB_init_connection import get_connection
-
-
+from modules.trafikverket_get_image import fetch_image
 
 
 def main():
     load_dotenv()
     conn = get_connection()
-    print(conn)
+    conn.close()
 
-
+    fetch_image()
 
 
 
