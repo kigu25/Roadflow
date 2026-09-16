@@ -1,10 +1,13 @@
 from dotenv import load_dotenv
+from DB_config.DB_init_connection import get_connection
 
 
 
 
 def main():
-    pass
+    load_dotenv()
+    conn = get_connection()
+    print(conn)
 
 
 
