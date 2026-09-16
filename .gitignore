@@ -19,5 +19,6 @@ __pycache__/
 .env
 
 
-#DB
+#folders not to be included
 /db_config
+/image_storage
