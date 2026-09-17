@@ -19,6 +19,7 @@ __pycache__/
 .env
 
 
-#folders not to be included
+#folders and files not to be included
 /db_config
 /image_storage
+all_cameras.txt
