@@ -5,6 +5,7 @@ top to bottom direction
 entity Camera {
     camera_id <<key>>
     trafikverket_id
+    camera_name
     latitude
     longitude
 }
