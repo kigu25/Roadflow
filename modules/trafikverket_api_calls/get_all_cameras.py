@@ -1,5 +1,6 @@
 import requests
 import os
+from modules.camera_set_config import build_set
 
 def search_cameras_near():
 
@@ -25,11 +26,15 @@ def search_cameras_near():
     data = data['RESPONSE']['RESULT'][0]['Camera']
 
 
-    with open("all_cameras.txt", "w", encoding="utf-8") as f:
+    with open("camera_configs/all_cameras.txt", "w", encoding="utf-8") as f:
         for camera in data:
             camera_id = camera['Id']
             name = camera['Name']
-            desc = camera['Status']
+
+            camera_set = build_set()
+
+            if name in camera_set:
+                print("SUCCESS" + " " + name)
 
             f.write(camera_id)
             f.write(' ')
