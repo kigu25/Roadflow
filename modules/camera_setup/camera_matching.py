@@ -19,9 +19,7 @@ def camera_matching():
                 "id" : camera_id,
                 "geo" : geo
             })
-            print("SUCCESS: " + name)
-
-    
+            
     with open("camera_configs/confirmed_cameras.json", "w", encoding="utf-8") as file:
         json.dump(matched, file, ensure_ascii=False, indent=2)
     
