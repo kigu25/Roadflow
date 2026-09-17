@@ -2,7 +2,7 @@ import requests
 import os
 from modules.camera_set_config import build_set
 
-def search_cameras_near():
+def get_all_cameras():
 
     url = "https://api.trafikinfo.trafikverket.se/v2/data.json"
 
