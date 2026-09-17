@@ -4,13 +4,14 @@ import os
 def get_all_cameras():
 
     url = "https://api.trafikinfo.trafikverket.se/v2/data.json"
+    camera_limit = "2000"
 
     api_key = os.getenv("trafikverket_api_key")
 
     
     message = "<REQUEST>" \
                 f"<LOGIN authenticationkey='{api_key}'/>" \
-                "<QUERY objecttype='Camera' namespace='road.infrastructure' schemaversion='1.1' limit='2000'>" \
+                f"<QUERY objecttype='Camera' namespace='road.infrastructure' schemaversion='1.1' limit='{camera_limit}'>" \
                     "<FILTER>" \
                         "<EQ name='Type' value='Trafikflödeskamera' />" \
                     "</FILTER>" \
@@ -34,7 +35,5 @@ def get_all_cameras():
             f.write(' ')
             f.write(name)
             f.write('\n')
-            f.write('\n')
 
-
-
+    return data
