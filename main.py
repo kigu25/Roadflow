@@ -1,7 +1,5 @@
 from dotenv import load_dotenv
 from DB_config.DB_init_connection import get_connection
-from modules.trafikverket_api.fetch_image import fetch_image
-from modules.trafikverket_api.get_all_cameras import get_all_cameras
 from modules.camera_setup.camera_matching import camera_matching
 
 def main():
@@ -9,7 +7,7 @@ def main():
     conn = get_connection()
     conn.close()
 
-    camera_matching()
+    camera_matching() # Should be loaded once per software-start to ensure that every camera that user wants is loaded and placed in DB as suposed
 
 
 
