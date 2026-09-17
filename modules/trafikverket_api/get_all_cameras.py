@@ -1,6 +1,5 @@
 import requests
 import os
-from modules.camera_set_config import build_set
 
 def get_all_cameras():
 
@@ -31,16 +30,11 @@ def get_all_cameras():
             camera_id = camera['Id']
             name = camera['Name']
 
-            camera_set = build_set()
-
-            if name in camera_set:
-                print("SUCCESS" + " " + name)
-
             f.write(camera_id)
             f.write(' ')
             f.write(name)
             f.write('\n')
             f.write('\n')
-            f.write('\n')
+
 
 
