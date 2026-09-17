@@ -23,3 +23,4 @@ __pycache__/
 /db_config
 /image_storage
 all_cameras.txt
+confirmed_cameras.json
