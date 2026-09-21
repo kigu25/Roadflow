@@ -1,17 +1,21 @@
 import requests
-from PIL import Image
+from modules.image_handling.build_links import build_links
+from modules.image_handling.save_image import save_image
+
+
 
 
 def fetch_image():
-    link = 'https://api.trafikinfo.trafikverket.se/v2/Images/data/road.infrastructure.camera/TrafficFlowCamera_39638125.jpg?type=fullsize&maxage=140'
-    response = requests.get(link)
+
+    link_data = build_links()
 
 
-    with open("image_storage/original/sparad_bild.jpg", "wb") as f:
-        f.write(response.content)
 
-    img = Image.open("image_storage/original/sparad_bild.jpg")
-    img.show()
+    for camera in link_data:
+        camera_id = camera['id']
+        photo_time = camera['photo_time']
+        photo_link = camera['photo_link']
 
+        fetched_img = requests.get(camera['photo_link']).content
 
-    
+        save_image(fetched_img, camera_id, photo_time)
