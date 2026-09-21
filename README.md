@@ -24,15 +24,26 @@
 ### Software Requirements
 
 **Functional Requirements**
-- *Camera acquisition & continious archive.*
-- *AI-vehicle detection and counting.*
-- *Interactive web map and historical timeline.*
+- *The system shall collect & store image snapshots at a fixed & documented cadence*
+- *The system shall collect & store metadata with every image*
+- *The system should have a continuos observation period of one week. E.g Mon-Fri*
+- *Detect vehicles using AI*
+- *Count number of vehicles the AI detects per image*
+- *The AI-model's Detection quality should be evaluated using a manually reviewed subset of images*
+- *Webpage to visualise the data*
+- *Interactive map displaying the camera locations*
+- *trafic-heatmap*
+- *Historical timeline connected to the map/heatmap*
+- *When clicking on a road segment or camera data should appear for that specific section/camera*
+- *The interface must clearly distinguish **missing data** from **low traffic***
 
 
 **Non-Functional Requirements**
-- *System should tolerate missing images & temporary source unavailability.*
-- *The map should remian responsive while browsing prototype dataset.*
-- *Should at least be capable to run locally.*
+- *System should tolerate missing images & temporary source unavailability*
+- *The system must not fabricate or replace missing data*
+- *The map should remian responsive while browsing prototype dataset*
+- *The system has an archive limit of 10GB*
+- *Should at least be capable to run locally*
 
 ---
 
