@@ -12,6 +12,6 @@ def fetch_image():
         photo_time = camera['photo_time']
         photo_link = camera['photo_link']
 
-        fetched_img = requests.get(camera['photo_link']).content
+        fetched_img = requests.get(photo_link).content
 
         save_image(fetched_img, camera_id, photo_time)
