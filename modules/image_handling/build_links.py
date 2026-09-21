@@ -7,7 +7,10 @@ def build_links():
         cameras = json.load(f)
 
     for x in cameras:
-        photo_link = x["photo"]
-        links.append(photo_link)
+        links.append({
+            "id" : x['id'],
+            "photo_time" : x['photo_time'],
+            "photo_link" : x['photo_link']
+        })
 
     return links
