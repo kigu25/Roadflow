@@ -11,15 +11,17 @@ def camera_matching():
     for camera in data:
         name = camera['Name']
         camera_id = camera['Id']
-        geo = camera['Geometry']['SWEREF99TM']
+        geo = camera['Geometry']['WGS84']
+        time = camera['PhotoTime']
 
         if name in filter_set:
             matched.append({
                 "name" : name,
                 "id" : camera_id,
-                "geo" : geo
+                "geo" : geo,
+                "time" : time
             })
-            
+
     with open("camera_configs/confirmed_cameras.json", "w", encoding="utf-8") as file:
         json.dump(matched, file, ensure_ascii=False, indent=2)
     
