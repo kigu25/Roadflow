@@ -25,7 +25,7 @@ def camera_matching():
                 "name" : name,
                 "id" : camera_id,
                 "geo" : geo,
-                "time" : time,
+                "photo_time" : time,
                 "photo_link" : photo
             })
 
