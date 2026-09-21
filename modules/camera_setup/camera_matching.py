@@ -26,7 +26,7 @@ def camera_matching():
                 "id" : camera_id,
                 "geo" : geo,
                 "time" : time,
-                "photo" : photo
+                "photo_link" : photo
             })
 
     with open("camera_configs/confirmed_cameras.json", "w", encoding="utf-8") as file:
