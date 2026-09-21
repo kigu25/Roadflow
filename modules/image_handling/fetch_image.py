@@ -3,13 +3,9 @@ from modules.image_handling.build_links import build_links
 from modules.image_handling.save_image import save_image
 
 
-
-
 def fetch_image():
 
     link_data = build_links()
-
-
 
     for camera in link_data:
         camera_id = camera['id']
