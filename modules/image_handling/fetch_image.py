@@ -11,7 +11,7 @@ def fetch_image():
 
     for camera in camera_data:
         camera_id = camera['Id']
-        photo_time = camera['Photo_time']
+        photo_time = camera['PhotoTime']
 
         #Fallback if fullsize does not exist for that specific camera
         if camera.get("PhotoUrlFullsize"):
