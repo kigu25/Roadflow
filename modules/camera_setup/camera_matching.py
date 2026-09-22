@@ -7,6 +7,14 @@ def camera_matching():
     filter_set = build_set()
     data = get_all_cameras()
 
+
+    excluded_ids = {
+        "SE_STA_CAMERA_0_1075001079",
+        "SE_STA_CAMERA_0_1075001074",
+        "SE_STA_CAMERA_0_1075001168"
+    }
+
+
     matched = []
     
     for camera in data:
@@ -15,7 +23,7 @@ def camera_matching():
         geo = camera['Geometry']['WGS84']
 
 
-        if name in filter_set:
+        if name in filter_set and camera_id not in excluded_ids:
             matched.append({
                 "name" : name,
                 "id" : camera_id,
