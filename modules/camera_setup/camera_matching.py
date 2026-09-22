@@ -1,4 +1,4 @@
-from modules.camera_setup.build_set_config import build_set
+from modules.camera_setup.build_camera_set import build_set
 from modules.trafikverket_api.get_all_cameras import get_all_cameras
 from modules.camera_setup.insert_cameras_db import insert_cameras_DB
 import json
