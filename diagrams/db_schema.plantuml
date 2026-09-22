@@ -14,14 +14,14 @@ entity photo{
     photo_id <<key>>
     camera_id
     photo_time
-    img_searchpath
+    original_filepath
 }
 
 entity analysis{
     analysis_id<<key>>
     photo_id
     nr_detected_vehicle
-    analyzed_img_searchpath
+    analyzed_filepath
 }
 
 entity detection{
