@@ -10,9 +10,9 @@ def main():
     conn = get_connection()
     conn.close()
 
-    camera_matching() # Should be loaded once per software-start to ensure that every camera that user wants is loaded and placed in DB as suposed
+    #camera_matching() # Should be loaded once per software-start to ensure that every camera that user wants is loaded and placed in DB as suposed
     #build_links()
-    #fetch_image()
+    fetch_image()
 
 
 

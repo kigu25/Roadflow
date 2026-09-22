@@ -6,8 +6,10 @@ def insert_image_db(camera_id, photo_time, filepath):
     cur = conn.cursor()
 
     camera_id = int(camera_id.rsplit("_", 1)[-1])
-    print(camera_id)
-    print(photo_time)
 
+    cur.execute("INSERT INTO photo(camera_id, photo_time, original_filepath) "
+                "VALUES(%s, %s, %s)", (camera_id, photo_time, filepath))
+
+    conn.commit()
     cur.close()
     conn.close()
