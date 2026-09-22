@@ -2,7 +2,7 @@ import requests
 from modules.camera_setup.get_camera_data import get_camera_data
 from modules.image_handling.save_image import save_image
 from modules.image_handling.insert_image_db import insert_image_db
-from modules.timezone_convert import timezone_convert
+from modules.utils.timezone_convert import timezone_convert
 
 
 def fetch_image():
