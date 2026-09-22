@@ -1,7 +1,8 @@
 import os
 
 def save_image(image, camera_id, photo_time):
-    photo_time = photo_time.replace(":", "-")
+    photo_time = photo_time.isoformat().replace(":", "-")
+
 
     folder = f"image_storage/original/{camera_id}"
     os.makedirs(folder, exist_ok=True)
