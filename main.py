@@ -12,8 +12,8 @@ def main():
 
     #camera_matching() # Should be loaded once per software-start to ensure that every camera that user wants is loaded and placed in DB as suposed
     #build_links()
-    #fetch_image()
-    get_camera_data()
+    fetch_image()
+    #get_camera_data()
 
 
 
