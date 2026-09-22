@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 from DB_config.DB_init_connection import get_connection
 from modules.camera_setup.camera_matching import camera_matching
 from modules.image_handling.fetch_image import fetch_image
-from modules.camera_setup.get_camera_data import get_camera_data
+
 
 
 def main():
@@ -10,10 +10,13 @@ def main():
     conn = get_connection()
     conn.close()
 
-    #camera_matching() # Should be loaded once per software-start to ensure that every camera that user wants is loaded and placed in DB as suposed
-    #build_links()
+    #Should be loaded once per software-start to ensure that every camera that user wants is loaded and placed in DB as suposed
+    #Or when a new camera is added to "selected_cameras.txt"
+    #camera_matching()
+    
+
+    #Will be an timer/loop here to run the fetch in a fixed cadence
     fetch_image()
-    #get_camera_data()
 
 
 
