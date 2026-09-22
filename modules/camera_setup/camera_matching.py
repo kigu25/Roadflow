@@ -13,21 +13,13 @@ def camera_matching():
         name = camera['Name']
         camera_id = camera['Id']
         geo = camera['Geometry']['WGS84']
-        time = camera['PhotoTime']
 
-        if camera.get("PhotoUrlFullsize"):
-            photo = camera['PhotoUrlFullsize']   
-        else:
-            photo = camera['PhotoUrl']
 
-        
         if name in filter_set:
             matched.append({
                 "name" : name,
                 "id" : camera_id,
                 "geo" : geo,
-                "photo_time" : time,
-                "photo_link" : photo
             })
 
     with open("camera_configs/confirmed_cameras.json", "w", encoding="utf-8") as file:
