@@ -33,5 +33,4 @@ def get_camera_data():
         data = data['RESPONSE']['RESULT'][0]['Camera'][0]
         camera_info.append(data)
 
-    print(camera_info)
     return camera_info
