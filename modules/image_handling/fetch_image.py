@@ -1,6 +1,8 @@
 import requests
 from modules.image_handling.build_links import build_links
 from modules.image_handling.save_image import save_image
+from modules.image_handling.insert_image_db import insert_image_db
+from modules.timezone_convert import timezone_convert
 
 
 def fetch_image():
@@ -14,4 +16,7 @@ def fetch_image():
 
         fetched_img = requests.get(photo_link).content
 
-        save_image(fetched_img, camera_id, photo_time)
+        photo_time_obj = timezone_convert(photo_time)
+
+        filepath = save_image(fetched_img, camera_id, photo_time_obj)
+        insert_image_db(camera_id, photo_time_obj, filepath)
