@@ -11,5 +11,10 @@ def insert_image_db(camera_id, photo_time, filepath):
                 "VALUES(%s, %s, %s)", (camera_id, photo_time, filepath))
 
     conn.commit()
+
+    photo_id = cur.lastrowid
+
     cur.close()
     conn.close()
+
+    return photo_id
