@@ -6,7 +6,7 @@ from modules.image_handling.save_image import save_image
 model = YOLO("yolo26x.pt")
 
 
-def image_processing(image_filepath, camera_id, photo_id, photo_time_obj):
+def image_processing(image_filepath, camera_id, photo_id, photo_time_obj, to_db=True):
 
     processed_image = model(image_filepath, conf=0.49, imgsz=1280)
     all_detections = []
@@ -33,14 +33,17 @@ def image_processing(image_filepath, camera_id, photo_id, photo_time_obj):
                 "y2" : y2
             })
 
-        annotated = result.plot()
-        success, encoded_image = cv2.imencode(".jpg", annotated)
-        if not success:
-            print("Could not encode the image\n", " ", "analyzed image is not saved to image_storage")
+        if to_db == True:
+            annotated = result.plot()
+            success, encoded_image = cv2.imencode(".jpg", annotated)
+            if not success:
+                print("Could not encode the image\n", " ", "analyzed image IS NOT saved to image_storage")
+            else:
+                image_bytes = encoded_image.tobytes()
+                analyzed_filepath = save_image(image_bytes, camera_id, photo_time_obj, image_type="analyzed")
         else:
-            image_bytes = encoded_image.tobytes()
-            analyzed_filepath = save_image(image_bytes, camera_id, photo_time_obj, image_type="analyzed")
+            result.show()
     
-
-    analysis_id = insert_analysis_db(photo_id, nr_vehicles, analyzed_filepath)
-    insert_detections_db(analysis_id, all_detections)
+    if to_db == True:
+        analysis_id = insert_analysis_db(photo_id, nr_vehicles, analyzed_filepath)
+        insert_detections_db(analysis_id, all_detections)
