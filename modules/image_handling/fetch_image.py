@@ -27,4 +27,4 @@ def fetch_image():
         filepath = save_image(fetched_img, camera_id, photo_time_obj, "original")
         photo_id = insert_image_db(camera_id, photo_time_obj, filepath)
 
-        image_processing(fetched_img, camera_id, photo_id, photo_time_obj)
+        image_processing(filepath, camera_id, photo_id, photo_time_obj)

@@ -6,9 +6,9 @@ from modules.image_handling.save_image import save_image
 model = YOLO("yolo26x.pt")
 
 
-def image_processing(image, camera_id, photo_id, photo_time_obj):
+def image_processing(image_filepath, camera_id, photo_id, photo_time_obj):
 
-    processed_image = model(image, conf=0.49, imgsz=1280)
+    processed_image = model(image_filepath, conf=0.49, imgsz=1280)
     all_detections = []
 
     for result in processed_image:
