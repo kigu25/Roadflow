@@ -1,10 +1,12 @@
 from ultralytics import YOLO
+import cv2
 from modules.image_analyzing.insert_analysis_detection_db import insert_detections_db, insert_analysis_db
+from modules.image_handling.save_image import save_image
 
 model = YOLO("yolo26x.pt")
 
 
-def image_processing(image, photo_id = 1, photo_time_obj = 1000): #REMOVE DEFAULT VALUES AFTER TESTS
+def image_processing(image, camera_id, photo_id, photo_time_obj):
 
     processed_image = model(image, conf=0.49, imgsz=1280)
     all_detections = []
@@ -31,8 +33,14 @@ def image_processing(image, photo_id = 1, photo_time_obj = 1000): #REMOVE DEFAUL
                 "y2" : y2
             })
 
+        annotated = result.plot()
+        success, encoded_image = cv2.imencode(".jpg", annotated)
+        if not success:
+            print("Could not encode the image\n", " ", "analyzed image is not saved to image_storage")
+        else:
+            image_bytes = encoded_image.tobytes()
+            analyzed_filepath = save_image(image_bytes, camera_id, photo_time_obj, image_type="analyzed")
+    
 
-    filepath = ""
-
-    analysis_id = insert_analysis_db(photo_id, nr_vehicles, filepath)
+    analysis_id = insert_analysis_db(photo_id, nr_vehicles, analyzed_filepath)
     insert_detections_db(analysis_id, all_detections)
