@@ -1,10 +1,10 @@
 from ultralytics import YOLO
-from modules.image_analyzing.insert_analyze_db import insert_analyze_db
+from modules.image_analyzing.insert_analysis_detection_db import insert_detections_db, insert_analysis_db
 
 model = YOLO("yolo26x.pt")
 
 
-def image_processing(image, photo_id, photo_time_obj):
+def image_processing(image, photo_id = 1, photo_time_obj = 1000): #REMOVE DEFAULT VALUES AFTER TESTS
 
     processed_image = model(image, conf=0.49, imgsz=1280)
     all_detections = []
@@ -32,5 +32,7 @@ def image_processing(image, photo_id, photo_time_obj):
             })
 
 
-    
-    insert_analyze_db(photo_id, photo_time_obj, nr_vehicles, all_detections)
+    filepath = ""
+
+    analysis_id = insert_analysis_db(photo_id, nr_vehicles, filepath)
+    insert_detections_db(analysis_id, all_detections)
