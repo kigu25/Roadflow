@@ -19,8 +19,9 @@ __pycache__/
 .env
 
 
-#folders and files not to be included
+#Other folders & files not to be included
 /db_config
 /image_storage
 all_cameras.txt
 confirmed_cameras.json
+yolo26x.pt
