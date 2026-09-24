@@ -37,13 +37,11 @@ def image_processing(image_filepath, camera_id, photo_id, photo_time_obj, to_db=
             annotated = result.plot()
             success, encoded_image = cv2.imencode(".jpg", annotated)
             if not success:
-                print("Could not encode the image\n", " ", "analyzed image IS NOT saved to image_storage")
+                print("Could not encode the image\n", " ", "analyzed image IS NOT saved to image_storage OR DB")
             else:
                 image_bytes = encoded_image.tobytes()
                 analyzed_filepath = save_image(image_bytes, camera_id, photo_time_obj, image_type="analyzed")
+                analysis_id = insert_analysis_db(photo_id, nr_vehicles, analyzed_filepath)
+                insert_detections_db(analysis_id, all_detections)
         else:
             result.show()
-    
-    if to_db == True:
-        analysis_id = insert_analysis_db(photo_id, nr_vehicles, analyzed_filepath)
-        insert_detections_db(analysis_id, all_detections)
