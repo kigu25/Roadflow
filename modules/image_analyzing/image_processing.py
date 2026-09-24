@@ -4,9 +4,9 @@ import cv2
 model = YOLO("yolo26x.pt")
 
 
-def image_processing(image_filepath, conf_value = 0.49, test=False):
+def image_processing(image_filepath, conf_value = 0.42, test=False):
 
-    processed_image = model(image_filepath, conf=conf_value, imgsz=1280, verbose=False)
+    processed_image = model(image_filepath, conf=conf_value, imgsz=1280, verbose=False, augment=True, classes=[1,2,3,5,7])
 
     all_detections_list = []
 
@@ -38,9 +38,14 @@ def image_processing(image_filepath, conf_value = 0.49, test=False):
             annotated = result.plot()
             success, encoded_image = cv2.imencode(".jpg", annotated)
             image_bytes = encoded_image.tobytes()
+
         else:
+            print("\n" "Number of detections", nr_vehicles, "\n")
+            print( "All detections:")
+
             for x in all_detections_list:
                 print(x['vehicle'], " ", x["confident"])
+
             result.show()
 
     return image_bytes, all_detections_list, nr_vehicles
