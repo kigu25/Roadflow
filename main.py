@@ -19,10 +19,10 @@ def main():
 
 
     #Used to run an image through the AI witohut saving to DB
-    #image_processing("image_storage/analyzed/SE_STA_CAMERA_Orion_2500033/2026-09-23T15-24-00+00-00.jpg", 1, 2, 3, False)
+    image_processing("image_storage/original/SE_STA_CAMERA_Orion_2500033/2026-09-24T12-27-00+00-00.jpg", 0.28 , True)
 
     #This function will be the main function being called for fetching new images, using a timer/loop to run at a fixed cadence
-    img_handling_pipeline()
+    #img_handling_pipeline()
 
 
 
