@@ -4,10 +4,11 @@ import cv2
 model = YOLO("yolo26x.pt")
 
 
-def image_processing(image_filepath,  test=False):
+def image_processing(image_filepath, conf_value = 0.49, test=False):
 
-    processed_image = model(image_filepath, conf=0.49, imgsz=1280)
-    all_detections = []
+    processed_image = model(image_filepath, conf=conf_value, imgsz=1280, verbose=False)
+
+    all_detections_list = []
 
     for result in processed_image:
         boxes = result.boxes
@@ -22,7 +23,7 @@ def image_processing(image_filepath,  test=False):
             coord = box.xyxy[0]
             x1, y1, x2, y2 = coord.tolist()
 
-            all_detections.append({
+            all_detections_list.append({
                 "vehicle" : vehicle,
                 "confident" : conf,
                 "x1" : x1,
@@ -31,13 +32,15 @@ def image_processing(image_filepath,  test=False):
                 "y2" : y2
             })
 
-        image_bytes = None
 
+        image_bytes = None
         if test == False:
             annotated = result.plot()
             success, encoded_image = cv2.imencode(".jpg", annotated)
             image_bytes = encoded_image.tobytes()
         else:
+            for x in all_detections_list:
+                print(x['vehicle'], " ", x["confident"])
             result.show()
 
-    return image_bytes, all_detections, nr_vehicles
+    return image_bytes, all_detections_list, nr_vehicles
