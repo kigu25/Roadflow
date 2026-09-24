@@ -6,7 +6,7 @@ model = YOLO("yolo26x.pt")
 
 def image_processing(image_filepath, conf_value = 0.42, test=False):
 
-    processed_image = model(image_filepath, conf=conf_value, imgsz=1280, verbose=False, augment=True, classes=[1,2,3,5,7])
+    processed_image = model(image_filepath, conf=conf_value, imgsz=1280, verbose=False, classes=[1,2,3,5,7])
 
     all_detections_list = []
 

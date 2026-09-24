@@ -1,3 +1,4 @@
+import time
 from dotenv import load_dotenv
 from modules.camera_setup.camera_matching import camera_matching
 from modules.image_handling.fetch_image import fetch_image
@@ -9,20 +10,17 @@ from modules.pipelines.img_handling_pipeline import img_handling_pipeline
 def main():
     load_dotenv()
 
-
     #Should be loaded once per software-start to ensure that every camera in "selected_cameras" is loaded and placed in DB as suposed
     #camera_matching()
-    
-
-  
-   
-
 
     #Used to run an image through the AI witohut saving to DB
-    image_processing("image_storage/original/SE_STA_CAMERA_Orion_2500033/2026-09-24T12-27-00+00-00.jpg", 0.28 , True)
+    #image_processing("image_storage/original/SE_STA_CAMERA_0_1075001082/2026-09-24T10-43-00+00-00.jpg", 0.40 , True)
 
     #This function will be the main function being called for fetching new images, using a timer/loop to run at a fixed cadence
-    #img_handling_pipeline()
+    while True:
+        img_handling_pipeline()
+        print("DONE")
+        time.sleep(320)
 
 
 
