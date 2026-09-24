@@ -36,7 +36,7 @@ def image_processing(image_filepath, conf_value = 0.42, test=False):
         image_bytes = None
         if test == False:
             annotated = result.plot()
-            success, encoded_image = cv2.imencode(".jpg", annotated)
+            success, encoded_image = cv2.imencode(".jpg", annotated, [cv2.IMWRITE_JPEG_QUALITY, 40])
             image_bytes = encoded_image.tobytes()
 
         else:
