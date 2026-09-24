@@ -36,6 +36,7 @@
 - *Historical timeline connected to the map/heatmap*
 - *When clicking on a road segment or camera data should appear for that specific section/camera*
 - *The interface must clearly distinguish **missing data** from **low traffic***
+- *The web application should support filtering*
 
 
 **Non-Functional Requirements**
