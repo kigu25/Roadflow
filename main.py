@@ -13,14 +13,13 @@ def main():
     #Should be loaded once per software-start to ensure that every camera in "selected_cameras" is loaded and placed in DB as suposed
     #camera_matching()
 
-    #Used to run an image through the AI witohut saving to DB
+    #Test image_processing encaspuled.
     #image_processing("image_storage/original/SE_STA_CAMERA_0_1075001082/2026-09-24T10-43-00+00-00.jpg", 0.40 , True)
 
     #This function will be the main function being called for fetching new images, using a timer/loop to run at a fixed cadence
     while True:
         img_handling_pipeline()
-        print("DONE")
-        time.sleep(320)
+        time.sleep(65)
 
 
 

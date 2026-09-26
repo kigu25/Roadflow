@@ -16,7 +16,7 @@ def img_handling_pipeline():
     for camera in camera_data_list:
         camera_id = camera['Id']
 
-        #Original-image
+        #Original_img
         image = fetch_image(camera)
 
         photo_time_obj = timezone_convert(camera['PhotoTime'])
@@ -26,7 +26,7 @@ def img_handling_pipeline():
         photo_id = insert_image_db(camera_id, photo_time_obj, filepath)
 
 
-        #AI-analyzed image
+        #Analyzing
         image_b, all_detections, nr_vehicles = image_processing(filepath)
 
         analyzed_filepath = save_image(image_b, camera_id, photo_time_obj, image_type="analyzed")

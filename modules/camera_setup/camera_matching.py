@@ -7,7 +7,7 @@ def camera_matching():
     filter_set = build_set()
     data = get_all_cameras()
 
-
+    #Cameras with duplicate names but different id's
     excluded_ids = {
         "SE_STA_CAMERA_0_1075001079",
         "SE_STA_CAMERA_0_1075001074",
