@@ -87,7 +87,56 @@ Your repository must remain **Private** for the entire course. This protects you
 
 ## Documenting Your Project
 
-Once Sprint 2 begins, add a **User Manual** section to this README, covering:
-- **Installing** — what's needed to set up your project locally (dependencies, environment, etc.)
-- **Running** — how to start/execute the application
+# User manual
+This software is tested on Python 3.13
+
+Before installation, make sure that the following is installed on your pc.
+- Python 3.13 or newer
+- MySQL Server
+- MySQL Workbench
+
+
+
+<br>
+
+
+# Windows installation:
+
+### 1. Clone the repo
+- Use the standard github clone commands to clone the project
+
+### 2. Create a virtual environment (venv)
+- `python -m venv .venv`
+
+### 3. Activate the virtual environment (venv)
+- Using a powershell terminal, run the command `.venv\Scripts\activate`
+
+### 4. Install all the necessary packages & dependencies
+- Using that same terminal, run `pip install -r requirements.txt`
+
+### 5. Create a database with mysql-workbench
+- Open MySQL Workbench and create a new connection.
+- Double-click the connection to open it.
+- Go to `File` -> `Open SQL script...` and select `setup_query.sql`, found in `DB_config` folder.
+- Click the lightning bolt (Execute) to run the whole setup sql file. This will create all tables needed.
+
+### 6. Change the .env.dummy
+- Inside the project folder you'll find a file called `.env.dummy`. Please change the name of the file to `.env`. 
+- Fill in your corresponding credentials for: `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, `trafikverket_api_key`. <br> 
+- Make sure that `DB_PORT` is numeric and don't change the `DB_NAME`.
+
+    **This step is crucial. Follow it!**
+
+### 7. Done 
+- Now the installation part is done, check running section to see how to run the software.
+<br><br>
+
+# Run the software:
+
+### First time you start the software
+- Run main with this flag `python main.py --setup`, this will create everything needed to run the software later.
+
+### Standard-run process
+- run `python main.py`, this will start the applications webpage and set the timer for the image_pipeline
+- In the terminal a link to localhost where the webpage will be is output. Open that link.
 
