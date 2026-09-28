@@ -85,7 +85,6 @@ Your repository must remain **Private** for the entire course. This protects you
 
 ---
 
-## Documenting Your Project
 
 # User manual
 This software is tested on Python 3.13
