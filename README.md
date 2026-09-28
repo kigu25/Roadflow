@@ -88,6 +88,7 @@ Your repository must remain **Private** for the entire course. This protects you
 
 # User manual
 This software is tested on Python 3.13
+**Always run this software from the project-root**
 
 Before installation, make sure that the following is installed on your pc.
 - Python 3.13 or newer
