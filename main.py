@@ -14,6 +14,7 @@ def main():
     parser = argparse.ArgumentParser(description="RoadFlow")
     parser.add_argument("--setup", action="store_true", help="Use the flag '--setup' if it's the first software start or if a new camera " \
                             "is added in 'selected_cameras.txt'")
+    parser.add_argument("--pipeline", action="store_true", help="Use this '--pipeline' flag for continious image-pipeline usage")
     args = parser.parse_args()
 
 
@@ -21,15 +22,17 @@ def main():
     #image_processing("image_storage/original/SE_STA_CAMERA_0_1075001169/2026-09-27T13-21-00+00-00.jpg", 0.40 , True)
 
 
-    #if main is called witht he flag --setup this will be ran
+    #if main is called with the flag --setup, this will be ran
     if args.setup:
         run_setup()
         return
 
-    #This function will be the main function being called for fetching new images, using a timer/loop to run at a fixed cadence
-    #while True:
-        #img_handling_pipeline()
-        #time.sleep(200)
+    #If main is called with the flag --pipeline, this will be ran
+    if args.pipeline:
+        while True:
+            img_handling_pipeline()
+            time.sleep(200)
+        return
 
 
 
