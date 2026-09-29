@@ -3,19 +3,10 @@ html {
     font-size: 22px;
 }
 
-h1 {
-    color: #B8A898;
-    font-size: 3.5rem;
-    border-bottom: 2px solid #C9A84C;
-    padding-bottom: 10px;
-}
-
 body {
-    background-color: #483320;
+    background-color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
     max-width: 1200px;
     margin: 0 auto;
@@ -23,27 +14,33 @@ body {
     box-sizing: border-box;
 }
 
-.buttons {
+.top-bar {
     display: flex;
-    gap: 30px;    
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+    background-color: rgba(164, 25, 16, 0.85);
 }
 
-.buttons button {
-    background-color: #C9A84C ;
-    color: white;
-    font-size: 1.5rem;
-    border: none;
-    padding: 15px 30px;
-    margin-top: 15px;
-    font-family: "Segoe UI";
+h1 {
+    color: #B8A898;
+    font-size: 1.2rem;
+    border-bottom: 2px solid rgba(255, 60, 40, 0.95);
+    padding-bottom: 5px;
+    width: 120px;
 }
-.adminButton button {
-    background-color: #C9A84C ;
-    color: white;
-    font-size: 1.5rem;
-    border: none;
-    padding: 15px 30px;
-    margin-top: 30px;
-    margin-left: 29px;
-    font-family: "Segoe UI";
+
+.nav-bar {
+    height: 70px;
+    flex: 1;
+}
+
+.buttons{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    padding-right: 20px;
+    box-sizing: border-box;
 }
