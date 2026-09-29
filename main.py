@@ -4,6 +4,8 @@ from modules.image_analyzing.image_processing import image_processing
 from modules.pipelines.img_handling_pipeline import img_handling_pipeline
 from run_setup import run_setup
 import argparse
+from flask import Flask
+from webpage.routes import blueprints
 
 
 def main():
@@ -24,11 +26,20 @@ def main():
         run_setup()
         return
 
-
     #This function will be the main function being called for fetching new images, using a timer/loop to run at a fixed cadence
-    while True:
-        img_handling_pipeline()
-        time.sleep(200)
+    #while True:
+        #img_handling_pipeline()
+        #time.sleep(200)
+
+
+
+
+    app = Flask(__name__, template_folder="webpage/templates", static_folder="webpage/static")
+    for bp in blueprints:
+        app.register_blueprint(bp)
+    app.run(host="127.0.0.1", port=5000)
+
+
 
 
 
