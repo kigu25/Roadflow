@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from modules.image_handling.fetch_image import fetch_image
 from modules.image_analyzing.image_processing import image_processing
 from modules.pipelines.img_handling_pipeline import img_handling_pipeline
-from run_setup import run_software_setup
+from run_setup import run_setup
 import argparse
 
 
@@ -17,15 +17,14 @@ def main():
 
 
 
-    #Test image_processing encaspuled by entering filepath and uncomment the function.
+    #Test image_processing encaspuled by uncommenting this function-call and enter the filepath for img to be analyzed.
     #image_processing("image_storage/original/SE_STA_CAMERA_0_1075001169/2026-09-27T13-21-00+00-00.jpg", 0.40 , True)
 
 
-    #run_software_setup()
 
     #if main is called witht he flag --setup this will be ran
     if args.setup:
-        run_software_setup()
+        run_setup()
         return
 
 
