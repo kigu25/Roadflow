@@ -35,9 +35,11 @@ def main():
 
 
     app = Flask(__name__, template_folder="webpage/templates", static_folder="webpage/static")
+
     for bp in blueprints:
         app.register_blueprint(bp)
-    app.run(host="127.0.0.1", port=5000)
+        
+    app.run(host="127.0.0.1", port=5000, debug=True)
 
 
 
