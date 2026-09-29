@@ -1,0 +1,49 @@
+html {
+    font-family: "Segoe UI", "Arial", "Helvetica", "sans-serif";
+    font-size: 22px;
+}
+
+h1 {
+    color: #B8A898;
+    font-size: 3.5rem;
+    border-bottom: 2px solid #C9A84C;
+    padding-bottom: 10px;
+}
+
+body {
+    background-color: #483320;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+    box-sizing: border-box;
+}
+
+.buttons {
+    display: flex;
+    gap: 30px;    
+}
+
+.buttons button {
+    background-color: #C9A84C ;
+    color: white;
+    font-size: 1.5rem;
+    border: none;
+    padding: 15px 30px;
+    margin-top: 15px;
+    font-family: "Segoe UI";
+}
+.adminButton button {
+    background-color: #C9A84C ;
+    color: white;
+    font-size: 1.5rem;
+    border: none;
+    padding: 15px 30px;
+    margin-top: 30px;
+    margin-left: 29px;
+    font-family: "Segoe UI";
+}
