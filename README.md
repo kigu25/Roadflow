@@ -109,10 +109,10 @@ Before installation, make sure that the following is installed on your pc.
 - `python -m venv .venv`
 
 ### 3. Activate the virtual environment (venv)
-- Using a powershell terminal, run the command `.venv\Scripts\activate`
+- Using the same terminal, run the command `.venv\Scripts\activate`
 
 ### 4. Install all the necessary packages & dependencies
-- Using that same terminal, run `pip install -r requirements.txt`
+- Using the same terminal, run the command `pip install -r requirements.txt`
 
 ### 5. Create a database with mysql-workbench
 - Open MySQL Workbench and create a new connection.
@@ -137,6 +137,6 @@ Before installation, make sure that the following is installed on your pc.
 - Run main with this flag `python main.py --setup`, this will create everything needed to run the software later.
 
 ### Standard-run process
-- run `python main.py`, this will start the applications webpage and set the timer for the image_pipeline
-- In the terminal a link to localhost where the webpage will be is output. Open that link.
+- run `python main.py`, this will start the software and run one itteration of img_pipeline, then sleep for x minutes and run again.
+- Later in the development phase, a webpage will be available to visualize data. Will update README when that is working.
 
