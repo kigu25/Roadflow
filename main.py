@@ -1,6 +1,5 @@
 import time
 from dotenv import load_dotenv
-from modules.image_handling.fetch_image import fetch_image
 from modules.image_analyzing.image_processing import image_processing
 from modules.pipelines.img_handling_pipeline import img_handling_pipeline
 from run_setup import run_setup
@@ -16,10 +15,8 @@ def main():
     args = parser.parse_args()
 
 
-
     #Test image_processing encaspuled by uncommenting this function-call and enter the filepath for img to be analyzed.
     #image_processing("image_storage/original/SE_STA_CAMERA_0_1075001169/2026-09-27T13-21-00+00-00.jpg", 0.40 , True)
-
 
 
     #if main is called witht he flag --setup this will be ran
@@ -32,6 +29,9 @@ def main():
     while True:
         img_handling_pipeline()
         time.sleep(200)
+
+
+
 
 
 
