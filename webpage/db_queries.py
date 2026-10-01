@@ -1,6 +1,6 @@
 from DB_config.DB_init_connection import get_connection
 
-def get_camera_coordinates():
+def get_camera_coord_query():
     conn = get_connection()
     
     cur = conn.cursor(dictionary=True)
