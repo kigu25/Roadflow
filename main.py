@@ -39,6 +39,8 @@ def main():
 
     app = Flask(__name__, template_folder="webpage/templates", static_folder="webpage/static")
 
+    app.json.ensure_ascii = False
+    
     for bp in blueprints:
         app.register_blueprint(bp)
         
