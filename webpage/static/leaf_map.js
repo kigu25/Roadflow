@@ -21,10 +21,11 @@ async function putCamerasMap()
         const allCameras = await loadCameras();
         for(const camera of allCameras)
         {
-            L.marker([camera.latitude, camera.longitude])
+            const marker = L.marker([camera.latitude, camera.longitude])
                 .addTo(map)
                 .bindPopup(camera.camera_name);
-            console.log(camera.camera_name);
+            
+            marker.on("click", () => showCameraDetails(camera.camera_name));
         }
     } catch (errorMsg){
         console.error("ERROR. Could not get cameras. code:", errorMsg);
