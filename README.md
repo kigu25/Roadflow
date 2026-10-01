@@ -133,10 +133,14 @@ Before installation, make sure that the following is installed on your pc.
 
 # Run the software:
 
-### First time you start the software
+### 1. First time you start the software
 - Run main with this flag `python main.py --setup`, this will create everything needed to run the software later.
 
-### Standard-run process
-- run `python main.py`, this will start the software and run one itteration of img_pipeline, then sleep for x minutes and run again.
-- Later in the development phase, a webpage will be available to visualize data. Will update README when that is working.
+### 2. Start collecting images, analyzing & inserting to DB
+- Start main with the flag `python main.py --pipeline`, this will make the software fetch images, analyzing them, create folders on the hard-drive and insert data to the DB. Let this run for a few minutes.
+- After a few minutes you'll have a couple new sub-folders in image_storage. Every image is saved with it's corresponding analyzed image. If you then query the database there will be some data show aswell.
 
+### Normal software-run
+*The webpage is not yet complete to not much to show at this point*
+- run `python main.py`, this will start the applications webpage.
+- In the terminal a link to localhost where the webpage will be is output. Open that link.
