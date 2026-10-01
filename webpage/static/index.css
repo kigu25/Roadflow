@@ -47,3 +47,9 @@ h1 {
 #leaf_map {
     height: 60vh;
 }
+
+#camera_info_box{
+    background-color: red;
+   /*display: none;*/ /*Use this to make the box hidden until something is*/
+    height: 25vh;
+}
