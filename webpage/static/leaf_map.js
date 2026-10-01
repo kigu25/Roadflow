@@ -13,3 +13,21 @@ async function loadCameras()
     
     return cameras;
 }
+
+async function putCamerasMap()
+{   
+    try {
+        const allCameras = await loadCameras();
+        for(const camera of allCameras)
+        {
+            L.marker([camera.latitude, camera.longitude])
+                .addTo(map)
+                .bindPopup(camera.camera_name);
+            console.log(camera.camera_name);
+        }
+    } catch (errorMsg){
+        console.error("ERROR. Could not get cameras. code:", errorMsg);
+    }
+}
+
+putCamerasMap();
