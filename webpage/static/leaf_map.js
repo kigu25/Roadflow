@@ -1,8 +1,9 @@
 const map = L.map('leaf_map').setView([56.68, 12.87], 8);
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap'
+L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_46bu_1_51611b2dfbf363bc33bc24dd',  {
+    subdomains: 'abcd',
+    maxZoom: 16,
+    attribution: '© CARTO basemaps'
 }).addTo(map);
 
 
