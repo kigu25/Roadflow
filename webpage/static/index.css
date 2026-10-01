@@ -46,6 +46,6 @@ h1 {
 
 #leaf_map {
     flex: 1;
-    min-height: 500px;
-    max-height: 700px;
+    min-height: 700px;
+    max-height: 900px;
 }
