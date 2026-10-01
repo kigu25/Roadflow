@@ -17,3 +17,17 @@ def get_camera_coord_query():
         x['longitude'] = float(x['longitude'])
 
     return result
+
+
+def get_camera_data_query(camera_name):
+
+    conn = get_connection()
+    cur = conn.cursor(dictionary=True)
+
+    cur.execute("SELECT * FROM camera WHERE camera_name LIKE %s", (camera_name,))
+    result = cur.fetchone()
+
+    cur.close()
+    conn.close()
+
+    return result
