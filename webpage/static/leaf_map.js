@@ -9,7 +9,7 @@ L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?k
 
 async function loadCameras()
 {
-    const response = await fetch('/endpoints/get/cameras');
+    const response = await fetch('/endpoints/get/camera/coords');
     const cameras = await response.json();
     
     return cameras;
