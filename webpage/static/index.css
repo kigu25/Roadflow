@@ -49,7 +49,26 @@ h1 {
 }
 
 #camera_info_box{
-    background-color: red;
-   /*display: none;*/ /*Use this to make the box hidden until something is*/
-    height: 25vh;
+    background-color: rgba(164, 25, 16, 0.85);
+    display: none; /*Use this to make the box hidden until something is*/
+    padding: 16px 24px;
+    margin: 20px;
+    border-radius: 6px;
+    color: #e6e5e4;
+}
+
+#camera_name {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 12px;
+    margin-left: 0;
+    font-size: 1.3rem;
+    color: #e6e5e4;
+    border-bottom: 3px solid #e6e5e4;
+    padding-bottom: 5px;
+}
+
+.camera_info_row{
+    margin: 4px 0;
+    font-size: 0.9rem;
 }
