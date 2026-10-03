@@ -72,3 +72,9 @@ h1 {
     margin: 4px 0;
     font-size: 0.9rem;
 }
+
+#latest_camera_img{
+    width: 70%;
+    height: auto;
+    padding-top: 30px;
+}
