@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, send_file
-from webpage.db_queries import get_camera_coord_query, get_camera_data_query, get_latest_img_query
+from webpage.db_queries import get_camera_coord_query, get_camera_data_query, get_latest_img_query, get_avg_detections_per_day
 
 endpoint_route = Blueprint('endpoints', __name__, url_prefix="/endpoints")
 
@@ -12,6 +12,13 @@ def get_camera_coords():
 def get_camera_data():
     camera_name = request.args.get("camera_name")
     return jsonify(get_camera_data_query(camera_name))
+
+
+@endpoint_route.route("/get/camera/stats")
+def get_camera_stats():
+    camera_name = request.args.get("camera_name")
+    avg = get_avg_detections_per_day(camera_name)
+    return jsonify({"avg_per_day": avg})
 
 
 @endpoint_route.route("/get/latest/img")
