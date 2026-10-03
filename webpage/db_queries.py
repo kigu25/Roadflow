@@ -31,3 +31,22 @@ def get_camera_data_query(camera_name):
     conn.close()
 
     return result
+
+
+def get_latest_photo_query(camera_name):
+    conn = get_connection()
+    cur = conn.cursor()
+
+    cur.execute("SELECT photo.original_filepath " \
+    "FROM photo " \
+    "INNER JOIN camera ON photo.camera_id = camera.camera_id " \
+    "WHERE camera.camera_name = %s " \
+    "ORDER BY photo_time DESC " \
+    "LIMIT 1", (camera_name,))
+
+    img_filepath = cur.fetchone()
+    cur.close()
+    conn.close()
+
+    print(img_filepath)
+    return img_filepath
