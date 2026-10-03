@@ -141,6 +141,8 @@ Before installation, make sure that the following is installed on your pc.
 - After a few minutes you'll have a couple new sub-folders in image_storage. Every image is saved with it's corresponding analyzed image. If you then query the database there will be some data show aswell.
 
 ### Normal software-run
-*The webpage is not yet complete to not much to show at this point*
+*The webpage works but is not finished. For now, it displays a map with clickable cameras that gets some interesting data for that camera & it's latest image*
 - run `python main.py`, this will start the applications webpage.
-- In the terminal a link to localhost where the webpage will be is output. Open that link.
+- In the terminal a link to localhost where the webpage will be is output. Open that link in a browser.
+- You'll now see a clickable-map with markers on it for each camera.
+- If you click on a camera-icon on the map that cameras latest images along with some data will show up under the map.
