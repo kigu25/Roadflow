@@ -18,4 +18,4 @@ def get_camera_data():
 def get_latest_photo():
     camera_name = request.args.get("camera_name")
     img_filepath = get_latest_photo_query(camera_name)
-    return send_file(img_filepath[0])
+    return send_file(img_filepath['original_filepath'])

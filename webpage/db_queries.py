@@ -35,7 +35,7 @@ def get_camera_data_query(camera_name):
 
 def get_latest_photo_query(camera_name):
     conn = get_connection()
-    cur = conn.cursor()
+    cur = conn.cursor(dictionary=True)
 
     cur.execute("SELECT photo.original_filepath " \
     "FROM photo " \
