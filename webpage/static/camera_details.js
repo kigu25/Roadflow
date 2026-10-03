@@ -12,7 +12,7 @@ async function showCameraDetails(camera_name)
     const camera_data = await response.json();
 
     camera_info_box_div.style.display = "block";
-    img_box.src = `/endpoints/get/latest/photo?camera_name=${encodeURIComponent(camera_name)}`
+    img_box.src = `/endpoints/get/latest/img?camera_name=${encodeURIComponent(camera_name)}`
     camera_name_h2.textContent = camera_data.camera_name;
     camera_trafikverket_id_p.textContent = `TrafikverketID: ${camera_data.camera_id}`;
     camera_latitude_p.textContent = `Latitude: ${camera_data.latitude}`;

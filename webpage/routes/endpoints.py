@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, send_file, abort
-from webpage.db_queries import get_camera_coord_query, get_camera_data_query, get_latest_photo_query
+from webpage.db_queries import get_camera_coord_query, get_camera_data_query, get_latest_img_query
 
 endpoint_route = Blueprint('endpoints', __name__, url_prefix="/endpoints")
 
@@ -14,8 +14,8 @@ def get_camera_data():
     return jsonify(get_camera_data_query(camera_name))
 
 
-@endpoint_route.route("/get/latest/photo")
+@endpoint_route.route("/get/latest/img")
 def get_latest_photo():
     camera_name = request.args.get("camera_name")
-    img_filepath = get_latest_photo_query(camera_name)
+    img_filepath = get_latest_img_query(camera_name)
     return send_file(img_filepath['original_filepath'])
