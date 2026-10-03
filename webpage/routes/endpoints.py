@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, send_file, abort
+from flask import Blueprint, jsonify, request, send_file
 from webpage.db_queries import get_camera_coord_query, get_camera_data_query, get_latest_img_query
 
 endpoint_route = Blueprint('endpoints', __name__, url_prefix="/endpoints")
