@@ -1,11 +1,12 @@
 from DB_config.DB_init_connection import get_connection
+from utils.camera_id_convert import camera_id_converter
 
 
 def insert_image_db(camera_id, photo_time, filepath):
     conn = get_connection()
     cur = conn.cursor()
 
-    camera_id = int(camera_id.rsplit("_", 1)[-1])
+    camera_id = camera_id_converter(camera_id)
 
     cur.execute("INSERT INTO photo(camera_id, photo_time, original_filepath) "
                 "VALUES(%s, %s, %s)", (camera_id, photo_time, filepath))
