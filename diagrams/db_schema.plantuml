@@ -10,6 +10,14 @@ entity Camera {
     longitude
 }
 
+entity data_gap{
+    data_gap_id <<key>>
+    camera_id
+    gap_start
+    gap_end
+    reason
+}
+
 entity photo{
     photo_id <<key>>
     camera_id
