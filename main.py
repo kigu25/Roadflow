@@ -25,6 +25,7 @@ def main():
     #if main is called with the flag --setup, the setup will be ran. ONLY do this before first start or if a new camera is added in 'selected_cameras.txt'
     if args.setup:
         run_setup()
+        print("Successful setup")
         return
 
     #If main is called with the flag --pipeline, the image gathering will run on infinite.
