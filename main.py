@@ -18,16 +18,16 @@ def main():
     args = parser.parse_args()
 
 
-    #Test image_processing encaspuled by uncommenting this function-call and enter the filepath for img to be analyzed.
+    #To test image_processing encaspuled, uncomment thefunction-call below and enter the filepath for img you want to be analyzed.
     #image_processing("image_storage/original/SE_STA_CAMERA_0_1075001169/2026-09-27T13-21-00+00-00.jpg", 0.40 , True)
 
 
-    #if main is called with the flag --setup, this will be ran
+    #if main is called with the flag --setup, the setup will be ran. ONLY do this before first start or if a new camera is added in 'selected_cameras.txt'
     if args.setup:
         run_setup()
         return
 
-    #If main is called with the flag --pipeline, this will be ran
+    #If main is called with the flag --pipeline, the image gathering will run on infinite.
     if args.pipeline:
         while True:
             img_handling_pipeline()
