@@ -3,9 +3,11 @@ from modules.image_handling.fetch_image import fetch_image
 from modules.utils.timezone_convert import timezone_convert
 from modules.image_handling.save_image import save_image
 from modules.image_analyzing.image_processing import image_processing
-from modules.image_handling.insert_image_db import insert_image_db
-from modules.image_analyzing.insert_analysis_detection_db import insert_detections_db, insert_analysis_db
-from queries.data_gap_queries import insert_data_gap
+from database_queries.insert_image_db import insert_image_db
+from database_queries.create_data_gap import create_data_gap
+from database_queries.insert_detection_db import insert_detections_db
+from database_queries.insert_analysis_db import insert_analysis_db
+
 
 
 
@@ -23,7 +25,7 @@ def img_handling_pipeline():
             image = fetch_image(camera)
             if image is None:
                 print(f"Could not get the image for camera with ID: {camera_id}. GAP logged in DB.")
-                insert_data_gap(camera_id, "image_fetch. API down or no image available.")
+                create_data_gap(camera_id, "image_fetch. API down or no image available.")
                 continue
 
             photo_time_obj = timezone_convert(camera['PhotoTime'])
@@ -44,5 +46,5 @@ def img_handling_pipeline():
 
         except Exception as excepetionn:
             print(f"Camera: {camera_id} failed: {excepetionn}")
-            insert_data_gap(camera_id, "pipeline error.")
+            create_data_gap(camera_id, "pipeline error.")
             continue

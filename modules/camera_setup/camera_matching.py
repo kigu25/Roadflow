@@ -1,6 +1,6 @@
 from modules.camera_setup.build_camera_set import build_set
 from modules.trafikverket_api.get_all_cameras import get_all_cameras
-from modules.camera_setup.insert_cameras_db import insert_cameras_DB
+from database_queries.insert_camera_db import insert_camera_db
 import json
 
 def camera_matching():
@@ -33,4 +33,4 @@ def camera_matching():
     with open("camera_configs/confirmed_cameras.json", "w", encoding="utf-8") as file:
         json.dump(matched, file, ensure_ascii=False, indent=2)
 
-    insert_cameras_DB(matched)
+    insert_camera_db(matched)

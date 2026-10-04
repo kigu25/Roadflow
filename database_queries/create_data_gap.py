@@ -2,7 +2,7 @@ from DB_config.DB_init_connection import get_connection
 from datetime import datetime, timezone
 from modules.utils.camera_id_converter import camera_id_converter
 
-def insert_data_gap(camera_id, reason):
+def create_data_gap(camera_id, reason):
     converted_camera_id = camera_id_converter(camera_id)
 
     conn = get_connection()
