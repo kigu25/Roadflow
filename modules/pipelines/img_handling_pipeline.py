@@ -5,6 +5,7 @@ from modules.image_handling.save_image import save_image
 from modules.image_analyzing.image_processing import image_processing
 from modules.image_handling.insert_image_db import insert_image_db
 from modules.image_analyzing.insert_analysis_detection_db import insert_detections_db, insert_analysis_db
+from queries.data_gap_queries import insert_data_gap
 
 
 
@@ -16,21 +17,32 @@ def img_handling_pipeline():
     for camera in camera_data_list:
         camera_id = camera['Id']
 
-        #Original_img
-        image = fetch_image(camera)
+        try:
+            #Original_img
 
-        photo_time_obj = timezone_convert(camera['PhotoTime'])
+            image = fetch_image(camera)
+            if image is None:
+                print(f"Could not get the image for camera with ID: {camera_id}. GAP logged in DB.")
+                insert_data_gap(camera_id, "image_fetch. API down or no image available.")
+                continue
 
-        filepath = save_image(image, camera_id, photo_time_obj, "original")
+            photo_time_obj = timezone_convert(camera['PhotoTime'])
 
-        photo_id = insert_image_db(camera_id, photo_time_obj, filepath)
+            filepath = save_image(image, camera_id, photo_time_obj, "original")
+
+            photo_id = insert_image_db(camera_id, photo_time_obj, filepath)
 
 
-        #Analyzing
-        image_b, all_detections, nr_vehicles = image_processing(filepath)
+            #Analyzing
+            image_b, all_detections, nr_vehicles = image_processing(filepath)
 
-        analyzed_filepath = save_image(image_b, camera_id, photo_time_obj, image_type="analyzed")
+            analyzed_filepath = save_image(image_b, camera_id, photo_time_obj, image_type="analyzed")
 
-        analysis_id = insert_analysis_db(photo_id, nr_vehicles, analyzed_filepath)
+            analysis_id = insert_analysis_db(photo_id, nr_vehicles, analyzed_filepath)
 
-        insert_detections_db(analysis_id, all_detections)
+            insert_detections_db(analysis_id, all_detections)
+
+        except Exception as excepetionn:
+            print(f"Camera: {camera_id} failed: {excepetionn}")
+            insert_data_gap(camera_id, "pipeline error.")
+            continue
