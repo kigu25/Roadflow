@@ -1,5 +1,5 @@
 from DB_config.DB_init_connection import get_connection
-from utils.camera_id_convert import camera_id_converter
+from modules.utils.camera_id_converter import camera_id_converter
 
 
 def insert_image_db(camera_id, photo_time, filepath):
