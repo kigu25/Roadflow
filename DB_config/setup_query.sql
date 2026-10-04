@@ -11,6 +11,16 @@ CREATE TABLE IF NOT EXISTS camera (
     PRIMARY KEY(camera_id)
 );
 
+CREATE TABLE IF NOT EXISTS data_gap (
+	data_gap_id INT AUTO_INCREMENT PRIMARY KEY,
+    camera_id INT NOT NULL,
+    gap_start DATETIME NOT NULL,
+    gap_end DATETIME,
+    reason VARCHAR(50),
+    
+	FOREIGN KEY (camera_id) REFERENCES camera(camera_id)
+);
+
 CREATE TABLE IF NOT EXISTS photo (
 	photo_id INT AUTO_INCREMENT PRIMARY KEY,
     camera_id INT NOT NULL,
