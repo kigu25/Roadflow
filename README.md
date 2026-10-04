@@ -88,12 +88,24 @@ Your repository must remain **Private** for the entire course. This protects you
 
 # User manual
 This software is tested on Python 3.13
+<br>
 **Always run this software from the project-root**
 
-Before installation, make sure that the following is installed on your pc.
+### Before installation, make sure that the following is installed on your pc.
 - Python 3.13 or newer
 - MySQL Server
 - MySQL Workbench
+
+
+### Foundations of the software
+This software is semi-automatic. Meaning, that all cameras the end-user want's to fetch images from is entered once in the file `selected_cameras.txt`.
+<br><br>
+Those selected cameras are then matched against the "real" cameras from trafikverket, to get their unique ID's. Therefore it's crucial to follow **Step 1** under `Run software` later down in this document.
+<br><br>
+After the setup has been ran once and the message `Successful setup` appears in the terminal, the software can be ran using the flag `--pipeline`. This will run the image_collecting and analyzing.
+<br><br>
+When there are "enough" images & data collected the webpage created to visualize the data becomes useful. It is started by running `main.py` without any flags. 
+
 
 
 
@@ -103,7 +115,7 @@ Before installation, make sure that the following is installed on your pc.
 # Windows installation:
 
 ### 1. Clone the repo
-- Use the standard github clone commands to clone the project
+- Use the standard github clone command, (`git clone <repo-url>`), to clone the software.
 
 ### 2. Create a virtual environment (venv)
 - `python -m venv .venv`
@@ -137,12 +149,12 @@ Before installation, make sure that the following is installed on your pc.
 - Run main with this flag `python main.py --setup`, this will create everything needed to run the software later.
 
 ### 2. Start collecting images, analyzing & inserting to DB
-- Start main with the flag `python main.py --pipeline`, this will make the software fetch images, analyzing them, create folders on the hard-drive and insert data to the DB. Let this run for a few minutes.
-- After a few minutes you'll have a couple new sub-folders in image_storage. Every image is saved with it's corresponding analyzed image. If you then query the database there will be some data show aswell.
+- Start main with the flag `python main.py --pipeline`, this will make the software fetch images, analyze them, create folders on the hard-drive and insert data to the DB. Let this run for a few minutes.
+- After a few minutes you'll have a couple new sub-folders in image_storage. Every image is saved with its corresponding analyzed image. If you then query the database there will be some data show aswell.
 
 ### Normal software-run
-*The webpage works but is not finished. For now, it displays a map with clickable cameras that gets some interesting data for that camera & it's latest image*
-- run `python main.py`, this will start the applications webpage.
+*The webpage works but is not finished. For now, it displays a map with clickable cameras that gets some interesting data for that camera & its latest image*
+- run `python main.py`, this will start the application's webpage.
 - In the terminal a link to localhost where the webpage will be is output. Open that link in a browser.
 - You'll now see a clickable-map with markers on it for each camera.
 - If you click on a camera-icon on the map that cameras latest images along with some data will show up under the map.
