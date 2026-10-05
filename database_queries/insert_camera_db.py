@@ -1,4 +1,5 @@
 from DB_config.DB_init_connection import get_connection
+from modules.utils.camera_id_converter import camera_id_converter
 
 
 def insert_camera_db(matched):
@@ -7,7 +8,7 @@ def insert_camera_db(matched):
 
     for x in matched:
         trafikverket_id = x['id']
-        camera_id = int(trafikverket_id.rsplit("_", 1)[-1]) # USE THE UTIL camera_id_converter for this instead.
+        camera_id = camera_id_converter(trafikverket_id)
         camera_name = x['name']
         coordinates = x['geo'].replace(")", "").split("(")
         coordinates = coordinates[1].split()
