@@ -153,8 +153,8 @@ When there are "enough" images & data collected the webpage created to visualize
 - After a few minutes you'll have a couple new sub-folders in image_storage. Every image is saved with its corresponding analyzed image. If you then query the database there will be some data show aswell.
 
 ### Normal software-run
-*The webpage works but is not finished. For now, it displays a map with clickable cameras that gets some interesting data for that camera & its latest image*
-- run `python main.py`, this will start the application's webpage.
+*The webpage works but is not finished. For now, it displays a map with clickable cameras that shows some interesting data for that camera & its latest image*
+- Run main with the flag `python main.py --webpage`, this will start the application's webpage.
 - In the terminal a link to localhost where the webpage will be is output. Open that link in a browser.
 - You'll now see a clickable-map with markers on it for each camera.
-- If you click on a camera-icon on the map that cameras latest images along with some data will show up under the map.
+- If you click on a camera-icon on the map that camera's latest images along with some data will show up under the map.
