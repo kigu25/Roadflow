@@ -32,7 +32,6 @@ def img_handling_pipeline():
             photo_time_obj = timezone_convert(camera['PhotoTime'])
             latest_timestamp = get_latest_timestamp_cam(camera_id)
 
-
             if latest_timestamp is not None and photo_time_obj <= latest_timestamp:
                 print(f"Camera with id: {camera_id} has stopped updating. Logging data_gap in DB.")
                 create_data_gap(camera_id, "Timestamp not updated.")
@@ -46,9 +45,9 @@ def img_handling_pipeline():
                 continue
 
 
-            #filepath = save_image(image, camera_id, photo_time_obj, "original")
+            filepath = save_image(image, camera_id, photo_time_obj, "original")
+            photo_id = insert_image_db(camera_id, photo_time_obj, filepath)
 
-            #photo_id = insert_image_db(camera_id, photo_time_obj, filepath)
 
             data_gap_id = check_for_data_gap(camera_id)
             if data_gap_id != None:
@@ -56,16 +55,20 @@ def img_handling_pipeline():
 
 
             #Analyzing the fetched image
-            #image_b, all_detections, nr_vehicles = image_processing(filepath)
+            image_b, all_detections, nr_vehicles = image_processing(filepath)
 
-            #analyzed_filepath = save_image(image_b, camera_id, photo_time_obj, image_type="analyzed")
+            analyzed_filepath = save_image(image_b, camera_id, photo_time_obj, image_type="analyzed")
 
-            #analysis_id = insert_analysis_db(photo_id, nr_vehicles, analyzed_filepath)
+            analysis_id = insert_analysis_db(photo_id, nr_vehicles, analyzed_filepath)
 
-            #insert_detections_db(analysis_id, all_detections)
+            insert_detections_db(analysis_id, all_detections)
 
 
         except Exception as excepetionn:
             print(f"Camera: {camera_id} failed: {excepetionn}")
-            create_data_gap(camera_id, "pipeline error.")
+            try:
+                create_data_gap(camera_id, "pipeline error.")
+            except Exception as db_erorr:
+                print(f"DB connection error. Could not create data_gap. CODE: {db_erorr}")
+                continue
             continue
