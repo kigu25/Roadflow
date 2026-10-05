@@ -9,6 +9,8 @@ from database_queries.insert_detection_db import insert_detections_db
 from database_queries.insert_analysis_db import insert_analysis_db
 from database_queries.latest_timestamp_camera import get_latest_timestamp_cam
 from modules.utils.camera_id_converter import camera_id_converter
+from database_queries.check_for_data_gap import check_for_data_gap
+from database_queries.end_data_gap import end_data_gap
 
 
 
@@ -42,6 +44,10 @@ def img_handling_pipeline():
             filepath = save_image(image, camera_id, photo_time_obj, "original")
 
             photo_id = insert_image_db(camera_id, photo_time_obj, filepath)
+
+            data_gap_id = check_for_data_gap(camera_id)
+            if data_gap_id != None:
+                end_data_gap(data_gap_id)
 
 
             #Analyzing the fetched image
