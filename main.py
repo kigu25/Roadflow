@@ -1,6 +1,6 @@
 import time
+from datetime import datetime
 from dotenv import load_dotenv
-
 from run_setup import run_setup
 import argparse
 from flask import Flask
@@ -28,12 +28,15 @@ def main():
     if args.pipeline:
         from modules.pipelines.img_handling_pipeline import img_handling_pipeline
         while True:
-            img_handling_pipeline()
+            try:
+                img_handling_pipeline()
+            except Exception as exc:
+                err_time = datetime.now()
+                print(f"TIME: {err_time}. Could not complete a full run of pipeline, retrying after sleep. CODE:{exc}")
             time.sleep(200)
-        return
 
 
-
+    #If main is called with the flag --webpage, the webpage starts running on localhost
     if args.webpage:
         app = Flask(__name__, template_folder="webpage/templates", static_folder="webpage/static")
         
@@ -44,10 +47,6 @@ def main():
             
         app.run(host="127.0.0.1", port=5000, debug=True)
     
-
-
-
-
 
 
 
