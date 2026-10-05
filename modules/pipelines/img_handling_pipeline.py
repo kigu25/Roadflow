@@ -7,6 +7,8 @@ from database_queries.insert_image_db import insert_image_db
 from database_queries.create_data_gap import create_data_gap
 from database_queries.insert_detection_db import insert_detections_db
 from database_queries.insert_analysis_db import insert_analysis_db
+from database_queries.latest_timestamp_camera import get_latest_timestamp_cam
+from modules.utils.camera_id_converter import camera_id_converter
 
 
 
@@ -17,25 +19,33 @@ def img_handling_pipeline():
 
 
     for camera in camera_data_list:
-        camera_id = camera['Id']
+        camera_id = camera_id_converter(camera['Id'])
 
         try:
-            #Original_img
+
+            #Checking if timestamp is same before fetching image
+            photo_time_obj = timezone_convert(camera['PhotoTime'])
+            latest_timestamp = get_latest_timestamp_cam(camera_id)
+
+            if photo_time_obj == latest_timestamp:
+                print(f"Camera with id: {camera_id} has stopped updating. Logging data_gap in DB.")
+                create_data_gap(camera_id, "Timestamp not updated.")
+                continue
+
 
             image = fetch_image(camera)
             if image is None:
-                print(f"Could not get the image for camera with ID: {camera_id}. GAP logged in DB.")
-                create_data_gap(camera_id, "image_fetch. API down or no image available.")
+                print(f"Failed to fetch image for camera with ID: {camera_id}. data_gap logged in DB.")
+                create_data_gap(camera_id, "Failed to fetch image.")
                 continue
 
-            photo_time_obj = timezone_convert(camera['PhotoTime'])
 
             filepath = save_image(image, camera_id, photo_time_obj, "original")
 
             photo_id = insert_image_db(camera_id, photo_time_obj, filepath)
 
 
-            #Analyzing
+            #Analyzing the fetched image
             image_b, all_detections, nr_vehicles = image_processing(filepath)
 
             analyzed_filepath = save_image(image_b, camera_id, photo_time_obj, image_type="analyzed")
@@ -43,6 +53,7 @@ def img_handling_pipeline():
             analysis_id = insert_analysis_db(photo_id, nr_vehicles, analyzed_filepath)
 
             insert_detections_db(analysis_id, all_detections)
+
 
         except Exception as excepetionn:
             print(f"Camera: {camera_id} failed: {excepetionn}")
