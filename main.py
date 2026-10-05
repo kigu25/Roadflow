@@ -32,8 +32,8 @@ def main():
                 img_handling_pipeline()
             except Exception as exc:
                 err_time = datetime.now()
-                print(f"TIME: {err_time}. Could not complete a full run of pipeline, retrying after sleep. CODE:{exc}")
-            time.sleep(200)
+                print(f"TIME: {err_time}. Could not complete a full run of the pipeline, retrying after sleep. CODE:{exc}")
+            time.sleep(240)
 
 
     #If main is called with the flag --webpage, the webpage starts running on localhost
