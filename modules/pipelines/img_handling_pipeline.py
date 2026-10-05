@@ -17,17 +17,16 @@ def img_handling_pipeline():
 
     camera_data_list = get_camera_data()
 
-
     for camera in camera_data_list:
         camera_id = camera_id_converter(camera['Id'])
 
         try:
-
             #Checking if timestamp is same before fetching image
             photo_time_obj = timezone_convert(camera['PhotoTime'])
             latest_timestamp = get_latest_timestamp_cam(camera_id)
 
-            if photo_time_obj == latest_timestamp:
+
+            if latest_timestamp is not None and photo_time_obj <= latest_timestamp:
                 print(f"Camera with id: {camera_id} has stopped updating. Logging data_gap in DB.")
                 create_data_gap(camera_id, "Timestamp not updated.")
                 continue
