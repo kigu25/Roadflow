@@ -4,13 +4,12 @@ from modules.utils.timezone_convert import timezone_convert
 from modules.image_handling.save_image import save_image
 from modules.image_analyzing.image_processing import image_processing
 from database_queries.insert_image_db import insert_image_db
-from database_queries.create_data_gap import create_data_gap
 from database_queries.insert_detection_db import insert_detections_db
 from database_queries.insert_analysis_db import insert_analysis_db
 from database_queries.latest_timestamp_camera import get_latest_timestamp_cam
 from modules.utils.camera_id_converter import camera_id_converter
-from database_queries.check_for_data_gap import check_for_data_gap
-from database_queries.end_data_gap import end_data_gap
+
+from database_queries import data_gap_queries
 
 
 def img_handling_pipeline():
@@ -25,7 +24,7 @@ def img_handling_pipeline():
 
             if not camera_active:
                 print(f"Camera with id: {camera_id} is not active according to trafikverket API, Logging data_gap in DB.")
-                create_data_gap(camera_id, "Camera not active from API")
+                data_gap_queries.create_gap(camera_id, "Camera not active from API")
                 continue
 
             #Checking if timestamp is same before fetching image
@@ -34,14 +33,14 @@ def img_handling_pipeline():
 
             if latest_timestamp is not None and photo_time_obj <= latest_timestamp:
                 print(f"Camera with id: {camera_id} has stopped updating. Logging data_gap in DB.")
-                create_data_gap(camera_id, "Timestamp not updated.")
+                data_gap_queries.create_gap(camera_id, "Timestamp not updated.")
                 continue
 
 
             image = fetch_image(camera)
             if image is None:
                 print(f"Failed to fetch image for camera with ID: {camera_id}. data_gap logged in DB.")
-                create_data_gap(camera_id, "Failed to fetch image.")
+                data_gap_queries.create_gap(camera_id, "Failed to fetch image.")
                 continue
 
 
@@ -49,9 +48,9 @@ def img_handling_pipeline():
             photo_id = insert_image_db(camera_id, photo_time_obj, filepath)
 
 
-            data_gap_id = check_for_data_gap(camera_id)
+            data_gap_id = data_gap_queries.check_for_gap(camera_id)
             if data_gap_id != None:
-                end_data_gap(data_gap_id)
+                data_gap_queries.end_gap(data_gap_id)
 
 
             #Analyzing the fetched image
@@ -66,9 +65,10 @@ def img_handling_pipeline():
 
         except Exception as excepetionn:
             print(f"Camera: {camera_id} failed: {excepetionn}")
+            
             try:
-                create_data_gap(camera_id, "pipeline error.")
+                data_gap_queries.create_gap(camera_id, "pipeline error.")
             except Exception as db_erorr:
-                print(f"DB connection error. Could not create data_gap. CODE: {db_erorr}")
-                continue
+                print(f"Could not log data_gap. CODE: {db_erorr}")
+
             continue
