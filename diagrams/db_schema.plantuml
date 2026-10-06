@@ -11,7 +11,7 @@ entity Camera {
 }
 
 entity data_gap{
-    data_gap_id <<key>>
+    gap_id <<key>>
     camera_id
     gap_start
     gap_end
@@ -28,7 +28,7 @@ entity photo{
 entity analysis{
     analysis_id<<key>>
     photo_id
-    nr_detected_vehicle
+    detected_vehicles
     analyzed_filepath
 }
 
@@ -54,9 +54,15 @@ relationship contains {
 
 }
 
+relationship may_have{
+
+}
+
 
 Camera -1- takes
 takes -M- photo
+Camera -1- may_have
+may_have -M- data_gap
 photo -1- produces
 produces -01- analysis
 analysis -1- contains
