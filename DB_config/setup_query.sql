@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS camera (
 );
 
 CREATE TABLE IF NOT EXISTS data_gap (
-	data_gap_id INT AUTO_INCREMENT PRIMARY KEY,
+	gap_id INT AUTO_INCREMENT PRIMARY KEY,
     camera_id INT NOT NULL,
     gap_start DATETIME NOT NULL,
     gap_end DATETIME,
