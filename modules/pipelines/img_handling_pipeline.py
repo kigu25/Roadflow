@@ -48,9 +48,9 @@ def img_handling_pipeline():
             photo_id = insert_image_db(camera_id, photo_time_obj, filepath)
 
 
-            data_gap_id = data_gap_queries.check_for_gap(camera_id)
-            if data_gap_id != None:
-                data_gap_queries.end_gap(data_gap_id)
+            gap_id = data_gap_queries.check_for_gap(camera_id)
+            if gap_id != None:
+                data_gap_queries.end_gap(gap_id)
 
 
             #Analyzing the fetched image
