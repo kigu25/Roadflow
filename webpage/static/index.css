@@ -74,7 +74,8 @@ h1 {
 }
 
 #latest_camera_img{
-    width: 70%;
+    width: 50%;
     height: auto;
+    max-height: 50vh;
     padding-top: 30px;
 }
