@@ -52,6 +52,20 @@ def get_avg_detections_per_day(camera_name):
     return avg_detections_tot
 
 
+def get_max_detections_day(camera_name):
+    conn = get_connection()
+    cur = conn.cursor()
+
+    cur.execute("SELECT MAX(detected_vehicles) as max_detected " \
+                "FROM analysis " \
+                "INNER JOIN photo ON photo.photo_id = analysis.photo_id " \
+                "INNER JOIN camera ON camera.camera_id = photo.camera_id " \
+                "WHERE camera_name = %s", (camera_name,))
+    max_detected = cur.fetchone()
+    cur.close()
+    conn.close()
+    return max_detected
+
 
 def get_latest_img_query(camera_name):
     conn = get_connection()
