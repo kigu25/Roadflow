@@ -47,6 +47,7 @@ def get_avg_detections_per_day(camera_name):
                 "GROUP BY photo_day " \
                 "ORDER BY photo_day", (camera_name,))
 
+    #Returns all days and it's AVG
     days = cur.fetchall()
     cur.close()
     conn.close()
@@ -54,6 +55,7 @@ def get_avg_detections_per_day(camera_name):
     if not days:
         return None
 
+    #Take each day's AVG and divide by number of days to get an actuall AVG
     tot_sum = 0
     for x in days:
         tot_sum+=x['avg_vehicles']
