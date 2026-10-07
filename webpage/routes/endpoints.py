@@ -25,10 +25,12 @@ def get_camera_stats():
 def get_latest_photo():
     camera_name = request.args.get("camera_name")
     img_filepath = get_latest_img_query(camera_name)
+    if img_filepath == None:
+        return jsonify({"Error": "No image found"}), 404
     return send_file(img_filepath['original_filepath'])
 
 
 @endpoint_route.route("/historical/data/hour")
 def historical_data_hour():
     camera_name = request.args.get("camera_name")
-    return get_historical_data_per_hour(camera_name)
+    return jsonify(get_historical_data_per_hour(camera_name))
