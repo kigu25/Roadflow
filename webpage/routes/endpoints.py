@@ -27,7 +27,6 @@ def get_nrdetections_for_camera_within_timeframe():
     camera_name = request.args.get("camera_name")
     start_time = request.args.get("start_time")
     end_time = request.args.get("end_time")
-    print(camera_name)
 
 
 
