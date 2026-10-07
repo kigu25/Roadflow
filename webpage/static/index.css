@@ -48,6 +48,13 @@ h1 {
     height: 60vh;
 }
 
+#control_row{
+    background-color: blue;
+    height: 300px;
+    padding: 16px 24px;
+    margin: 20px;
+}
+
 #camera_info_box{
     background-color: rgba(164, 25, 16, 0.85);
     display: none; /*Use this to make the box hidden until something is*/
