@@ -33,6 +33,8 @@ def main():
             except Exception as exc:
                 err_time = datetime.now()
                 print(f"TIME: {err_time}. Could not complete a full run of the pipeline, retrying after sleep. CODE:{exc}")
+            itteration_time = datetime.now()
+            print(f"{itteration_time} itteration complete. Now entering sleep.")
             time.sleep(240)
 
 
