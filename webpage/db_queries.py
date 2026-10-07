@@ -84,7 +84,7 @@ def get_latest_img_query(camera_name):
 
     return img_filepath
 
-
+#Currently not used. Might use later on or might get deleted
 def get_historical_data_per_hour(camera_name):
     conn = get_connection()
     cur = conn.cursor(dictionary=True)
