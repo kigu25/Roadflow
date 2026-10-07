@@ -64,6 +64,16 @@ h1 {
     color: #e6e5e4;
 }
 
+#camera_details {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 12px;
+    margin-left: 0;
+    font-size: 1.6rem;
+    color: #e6e5e4;
+    padding-bottom: 30px;
+}
+
 #camera_name {
     margin-top: 0;
     margin-right: 0;
@@ -71,8 +81,8 @@ h1 {
     margin-left: 0;
     font-size: 1.3rem;
     color: #e6e5e4;
-    border-bottom: 3px solid #e6e5e4;
-    padding-bottom: 5px;
+    border-bottom: 2px solid #e6e5e4;
+    
 }
 
 .camera_info_row{
