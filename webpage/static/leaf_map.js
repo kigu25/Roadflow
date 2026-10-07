@@ -9,7 +9,7 @@ L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?k
 
 async function loadCameras()
 {
-    const response = await fetch('/endpoints/get/camera/coords');
+    const response = await fetch('/endpoints/get/all/camera/data');
     const cameras = await response.json();
     
     return cameras;
@@ -25,7 +25,7 @@ async function putCamerasMap()
                 .addTo(map)
                 .bindPopup(camera.camera_name);
             
-            marker.on("click", () => showCameraDetails(camera.camera_name));
+            marker.on("click", () => showCameraDetails(camera));
         }
     } catch (errorMsg){
         console.error("ERROR. Could not get cameras. code:", errorMsg);
