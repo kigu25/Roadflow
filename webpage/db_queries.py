@@ -1,5 +1,6 @@
 from DB_config.DB_init_connection import get_connection
 
+
 def get_camera_coord_query():
     conn = get_connection()
     
@@ -29,20 +30,20 @@ def get_camera_data_query(camera_name):
 
     cur.close()
     conn.close()
-
     return result
+
 
 def get_avg_detections_per_day(camera_name):
     conn = get_connection()
     cur = conn.cursor(dictionary=True)
 
     cur.execute("SELECT DATE_FORMAT(photo.photo_time, '%Y-%m-%d') AS photo_day, " \
-                    "AVG(analysis.detected_vehicles) AS avg_vehicles " \
+                        "AVG(analysis.detected_vehicles) AS avg_vehicles " \
                 "FROM analysis " \
                 "INNER JOIN photo ON analysis.photo_id = photo.photo_id " \
                 "INNER JOIN camera ON photo.camera_id = camera.camera_id " \
                 "WHERE camera.camera_name = %s " \
-                "AND HOUR(photo.photo_time) BETWEEN 5 AND 19 " \
+                "AND HOUR(photo.photo_time) BETWEEN 6 AND 17 " \
                 "GROUP BY photo_day " \
                 "ORDER BY photo_day", (camera_name,))
 
@@ -96,5 +97,4 @@ def get_historical_data_per_hour(camera_name):
     res = cur.fetchall()
     cur.close()
     conn.close()
-
     return res
