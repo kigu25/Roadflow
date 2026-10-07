@@ -42,7 +42,7 @@ def get_avg_detections_per_day(camera_name):
                 "INNER JOIN photo ON analysis.photo_id = photo.photo_id " \
                 "INNER JOIN camera ON photo.camera_id = camera.camera_id " \
                 "WHERE camera.camera_name = %s " \
-                "AND HOUR(photo.photo_time) BETWEEN 4 AND 20 " \
+                "AND HOUR(photo.photo_time) BETWEEN 5 AND 19 " \
                 "GROUP BY photo_day " \
                 "ORDER BY photo_day", (camera_name,))
 
@@ -78,3 +78,23 @@ def get_latest_img_query(camera_name):
     conn.close()
 
     return img_filepath
+
+
+def get_historical_data_per_hour(camera_name):
+    conn = get_connection()
+    cur = conn.cursor(dictionary=True)
+
+    cur.execute("SELECT HOUR(photo.photo_time) AS photo_hour, " \
+                        "ROUND(AVG(analysis.detected_vehicles) ,1) AS avg_vehicles, " \
+                        "MAX(analysis.detected_vehicles) AS max_vehicles " \
+                "FROM photo " \
+                "INNER JOIN analysis ON analysis.photo_id = photo.photo_id " \
+                "INNER JOIN camera ON camera.camera_id = photo.camera_id " \
+                "WHERE camera.camera_name = %s " \
+                "GROUP BY photo_hour " \
+                "ORDER BY photo_hour", (camera_name,))
+    res = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    return res
