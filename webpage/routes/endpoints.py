@@ -8,11 +8,11 @@ def get_all_camera_data():
     return jsonify(get_all_camera_data_query())
 
 
-@endpoint_route.route("/get/camera/stats")
+@endpoint_route.route("/get/avg/detections/day")
 def get_camera_stats():
     camera_name = request.args.get("camera_name")
-    avg = get_avg_detections_per_day(camera_name)
-    return jsonify({"avg_per_day": avg})
+    avg_detections = get_avg_detections_per_day(camera_name)
+    return jsonify({"avg_detections_day": avg_detections})
 
 
 @endpoint_route.route("/get/latest/img")

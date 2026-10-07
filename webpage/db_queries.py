@@ -46,9 +46,10 @@ def get_avg_detections_per_day(camera_name):
     tot_sum = 0
     for x in days:
         tot_sum+=x['avg_vehicles']
-    avg_per_day = round(float(tot_sum / len(days)), 2)
 
-    return avg_per_day
+    avg_detections_tot = round(float(tot_sum / len(days)), 2)
+
+    return avg_detections_tot
 
 
 
