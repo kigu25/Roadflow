@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, send_file
-from webpage.db_queries import get_all_camera_data_query, get_latest_img_query, get_avg_detections_per_day, get_historical_data_per_hour, get_max_detections_camera
-
+from webpage.db_queries import get_all_camera_data_query, get_latest_img_query, get_avg_detections_per_day, get_historical_data_per_hour
+from webpage.db_queries import get_max_detections_camera, get_vehicles_per_hour_based_on_date
 endpoint_route = Blueprint('endpoints', __name__, url_prefix="/endpoints")
 
 @endpoint_route.route("/get/all/camera/data")
@@ -22,12 +22,12 @@ def get_max_detections():
     return jsonify(response)
 
 
-@endpoint_route.route("/get/nrdetections/for/camera/timeframe")
-def get_nrdetections_for_camera_within_timeframe():
+@endpoint_route.route("/get/nrdetections/per/hour/bydate")
+def get_detected_per_hour_date():
     camera_name = request.args.get("camera_name")
-    start_time = request.args.get("start_time")
-    end_time = request.args.get("end_time")
-
+    date = request.args.get("date")
+    resp = get_vehicles_per_hour_based_on_date(camera_name, date)
+    return jsonify(resp)
 
 
 @endpoint_route.route("/get/latest/img")
