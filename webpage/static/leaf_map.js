@@ -25,7 +25,10 @@ async function putCamerasMap()
                 .addTo(map)
                 .bindPopup(camera.camera_name);
             
-            marker.on("click", () => showCameraDetails(camera));
+            marker.on("click", () => {
+                showCameraDetails(camera); 
+                graphs_render(camera, "2026-10-06");
+            });
         }
     } catch (errorMsg){
         console.error("ERROR. Could not get cameras. code:", errorMsg);
