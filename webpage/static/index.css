@@ -59,7 +59,7 @@ h1 {
 #camera_info_box{
     background-color: rgba(164, 25, 16, 0.85);
     display: none; /*Use this to make the box hidden until something is*/
-    padding: 16px 24px;
+    padding: 13px 21px;
     margin: 20px;
     border-radius: 6px;
     color: #e6e5e4;
@@ -99,7 +99,7 @@ h1 {
 }
 
 #graph_render_box{
-    background-color: rgba(164, 25, 16, 0.85);
+    background-color: #2b2b2b;
     display: none; /*Use this to make the box hidden until something is*/
     padding: 16px 24px;
     margin: 20px;
