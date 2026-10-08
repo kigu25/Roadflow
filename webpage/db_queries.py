@@ -84,6 +84,36 @@ def get_latest_img_query(camera_name):
 
     return img_filepath
 
+
+
+def get_vehicles_per_hour_based_on_date(camera_name, date):
+    
+    conn = get_connection()
+    cur = conn.cursor(dictionary=True)
+
+    cur.execute("SELECT HOUR(photo.photo_time) AS photo_hour, " \
+                        "ROUND(AVG(analysis.detected_vehicles), 2) AS avg_vehicles, " \
+                        "COUNT(*) AS nr_photos " \
+                "FROM photo " \
+                "INNER JOIN analysis ON analysis.photo_id = photo.photo_id " \
+                "INNER JOIN camera ON camera.camera_id = photo.camera_id " \
+                "WHERE camera_name = %s " \
+                "AND DATE(photo.photo_time) = %s" \
+                "GROUP BY photo_hour " \
+                "ORDER BY photo_hour", (camera_name, date))
+    
+    hours = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    #avg from decimal to float
+    for x in hours:
+        x['avg_vehicles'] = float(x['avg_vehicles'])
+        
+    return hours
+
+
+
 #Currently not used. Might use later on or might get deleted
 def get_historical_data_per_hour(camera_name):
     conn = get_connection()
