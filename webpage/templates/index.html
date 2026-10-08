@@ -34,7 +34,7 @@
         <button>"Click"</button>
     </div>
     <div id="camera_info_box">
-        <h2 id="camera_details">Details about camera</h1>
+        <h2 id="camera_details">Details about camera</h2>
         <h2 id="camera_name"></h2>
         <p id="camera_id" class="camera_info_row"></p>
         <p id="latitude" class="camera_info_row"></p>
@@ -42,11 +42,17 @@
         <p id="trafikverket_id" class="camera_info_row"></p>
         <p id="avg_vehicles" class="camera_info_row"></p>
         <p id="max_vehicles" class="camera_info_row"></p>
-        <img id="latest_camera_img"></img>
-
+        <img id="latest_camera_img">
     </div>
 
+    <div id="graph_render_box">
+        <div id="chart"></div>
 
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="/static/data_charts.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="/static/camera_details.js"></script>
     <script src="/static/leaf_map.js"></script>
