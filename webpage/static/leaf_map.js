@@ -27,7 +27,7 @@ async function putCamerasMap()
             
             marker.on("click", () => {
                 showCameraDetails(camera); 
-                graphs_render(camera, "2026-10-06");
+                render_graph(camera, "2026-10-06"); //Hardcoded date to be changed. It will later take the value from a slider and send it to the function.
             });
         }
     } catch (errorMsg){
