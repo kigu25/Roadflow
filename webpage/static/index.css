@@ -50,6 +50,7 @@ h1 {
 
 #control_row{
     background-color: blue;
+    display: none;
     height: 300px;
     padding: 16px 24px;
     margin: 20px;
@@ -95,4 +96,17 @@ h1 {
     height: auto;
     max-height: 50vh;
     padding-top: 30px;
+}
+
+#graph_render_box{
+    background-color: rgba(164, 25, 16, 0.85);
+    display: none; /*Use this to make the box hidden until something is*/
+    padding: 16px 24px;
+    margin: 20px;
+    border-radius: 6px;
+    color: #e6e5e4;
+}
+
+#chart{
+    width: 100%;
 }
