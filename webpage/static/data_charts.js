@@ -11,17 +11,34 @@ async function render_graph(camera, date)
 
     const { hourList, detectionList } = await detections_hour_by_date(camera, date)
 
-    var options = {
+    const options = {
+    colors: ['#d64533'],
+    dataLabels: { enabled: false },
+    grid: {
+        borderColor: '#444'
+    },
+    plotOptions: {
+        bar: {borderRadius: 4, columnWidth: '60%'}
+    },
+
     chart: {
-        type: 'bar'
+        type: 'bar',
+        foreColor: "#e6e5e4",
+        height: "500",
+        toolbar: {show:false}
+        
     },
     series: [{
-        name: 'Detections',
+        name: 'Vehicles in image (average)',
         data: detectionList
     }],
     xaxis: {
-        categories: hourList
-    }
+        categories: hourList,
+        title: { text: "Hour", style: {fontSize: '15px'} }
+    },
+    yaxis: {
+        title: { text: "Vehicles in image (average)", style: {fontSize: '15px'} }
+            }
     }
     chart = new ApexCharts(document.querySelector('#chart'), options)
     chart.render()
