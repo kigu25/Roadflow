@@ -30,9 +30,23 @@
         </div>
     </div>
     <div id="leaf_map"></div>
+
     <div id="control_row">
-        <button>"Click"</button>
+        <input type="range" min="0" max="1435" value="720" step="15" class="time_slider" id="time_slider">
+        <datalist id="hours">
+            <option value="0" label="00:00"></option>
+            <option value="3" label="03:00"></option>
+            <option value="6" label="06:00"></option>
+            <option value="9" label="09:00"></option>
+            <option value="12" label="12:00"></option>
+            <option value="15" label="15:00"></option>
+            <option value="18" label="18:00"></option>
+            <option value="21" label="21:00"></option>
+            <option value="24" label="24:00"></option>
+        </datalist>
+        <p>Selected time: <output id="slider_output"></output></p>
     </div>
+
     <div id="camera_info_box">
         <h2 id="camera_details">Camera details</h2>
         <h2 id="camera_name"></h2>
@@ -50,7 +64,7 @@
     </div>
 
 
-
+    <script src="/static/time_slider.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="/static/data_charts.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
