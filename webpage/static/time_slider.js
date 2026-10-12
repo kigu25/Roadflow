@@ -1,6 +1,6 @@
 const slider_input = document.getElementById("time_slider")
 const slider_output_p = document.getElementById("output_text")
-const date_select = document.getElementById("date_select")
+const slider_date_select = document.getElementById("date_select")
 
 
 slider_output_p.textContent = slider_input.value;
@@ -9,7 +9,7 @@ slider_input.addEventListener("input", (selected_value) => {
     const inputValue = selected_value.target.value;
     const hours = Math.floor(inputValue/60);
     const minutes = inputValue % 60;
-    const queryDate = date_select.value
+    const queryDate = slider_date_select.value
 
 
     //Checks if hours < 2, add an zero at start, same for minutes. So 9:00 -> 09:00 and so on
@@ -20,7 +20,7 @@ slider_input.addEventListener("input", (selected_value) => {
 
 slider_input.addEventListener("change", (send_value) => {
     const inputValue = send_value.target.value;
-    const queryDate = date_select.value
+    const queryDate = slider_date_select.value
 
     const date_obj = new Date(queryDate + "T00:00")
     date_obj.setMinutes(Number(inputValue))
