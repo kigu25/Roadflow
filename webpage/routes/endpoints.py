@@ -23,7 +23,7 @@ def get_max_detections():
     return jsonify(response)
 
 
-@endpoint_route.route("/get/nrdetections/per/hour/bydate")
+@endpoint_route.route("/get/detections/for/graph/date")
 def get_detected_per_hour_date():
     camera_name = request.args.get("camera_name")
     date = request.args.get("date")
