@@ -8,7 +8,6 @@ from database_queries.insert_detection_db import insert_detections_db
 from database_queries.insert_analysis_db import insert_analysis_db
 from database_queries.latest_timestamp_camera import get_latest_timestamp_cam
 from modules.utils.camera_id_converter import camera_id_converter
-
 from database_queries import data_gap_queries
 
 
