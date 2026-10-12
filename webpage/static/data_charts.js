@@ -9,7 +9,7 @@ async function render_graph(camera, date)
 
     graph_render_box.style.display = "block";
 
-    const { hourList, detectionList } = await detections_hour_by_date(camera, date)
+    const { hourList, detectionList } = await detections_for_graph(camera, date)
 
     const options = {
     colors: ['#d64533'],
@@ -46,10 +46,10 @@ async function render_graph(camera, date)
 
 
 
-async function detections_hour_by_date(camera, date)
+async function detections_for_graph(camera, date)
 {
     const parameters = new URLSearchParams({camera_name: camera.camera_name, date: date})
-    const response1 = await fetch(`/endpoints/get/nrdetections/per/hour/bydate?${parameters}`)
+    const response1 = await fetch(`/endpoints/get/detections/for/graph/date?${parameters}`)
     const hours_detections = await response1.json()
     console.log(hours_detections)
     const hourList = []
