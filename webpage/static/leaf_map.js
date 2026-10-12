@@ -1,4 +1,5 @@
 const map = L.map('leaf_map').setView([56.68, 12.87], 8);
+const map_date_select = document.getElementById("date_select")
 
 L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_46bu_1_51611b2dfbf363bc33bc24dd',  {
     subdomains: 'abcd',
@@ -27,7 +28,7 @@ async function putCamerasMap()
             
             marker.on("click", () => {
                 showCameraDetails(camera); 
-                render_graph(camera, "2026-10-06"); //Hardcoded date to be changed. It will later take the value from a slider and send it to the function.
+                render_graph(camera, map_date_select.value);
             });
         }
     } catch (errorMsg){
