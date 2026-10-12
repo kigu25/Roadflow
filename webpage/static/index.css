@@ -73,13 +73,15 @@ datalist{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
-    
+    margin-left: -17px;
+    margin-right: -17px;
 }
 
 
-option {
+#hours option {
   padding: 0;
+  width: 50px;
+  text-align: center;
   color: white;
 }
 
