@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request, send_file
 from webpage.db_queries import get_all_camera_data_query, get_latest_img_query, get_avg_detections_per_day, get_historical_data_per_hour
-from webpage.db_queries import get_max_detections_camera, get_vehicles_per_hour_based_on_date
+from webpage.db_queries import get_max_detections_camera, get_vehicles_per_hour_based_on_date, get_data_heatmap
+from datetime import datetime, timedelta
 endpoint_route = Blueprint('endpoints', __name__, url_prefix="/endpoints")
 
 @endpoint_route.route("/get/all/camera/data")
@@ -43,3 +44,15 @@ def get_latest_photo():
 def historical_data_hour():
     camera_name = request.args.get("camera_name")
     return jsonify(get_historical_data_per_hour(camera_name))
+
+
+@endpoint_route.route("/get/intensity/heatmap/time/date")
+def get_intensity_for_heatmap():
+    date_object = request.args.get("date_object")
+
+    formated_date_time = datetime.fromisoformat(date_object)
+
+    start_time = formated_date_time.replace(tzinfo=None)
+    end_time = start_time + timedelta(minutes=15)
+
+    return jsonify(get_data_heatmap(start_time, end_time))
