@@ -132,3 +132,21 @@ def get_historical_data_per_hour(camera_name):
     cur.close()
     conn.close()
     return res
+
+
+
+def get_data_heatmap(start_time, end_time):
+    conn = get_connection()
+    cur = conn.cursor(dictionary=True)
+
+    cur.execute("SELECT camera.camera_id, AVG(analysis.detected_vehicles) AS avg_vehicles FROM camera " \
+    "INNER JOIN photo ON camera.camera_id = photo.camera_id " \
+    "INNER JOIN analysis ON photo.photo_id = analysis.photo_id " \
+    "WHERE photo.photo_time >= %s AND photo.photo_time < %s " \
+    "GROUP BY camera.camera_id", (start_time, end_time,))
+
+    result = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    return result
