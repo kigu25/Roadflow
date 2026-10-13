@@ -140,10 +140,12 @@ def get_data_heatmap(start_time, end_time):
     cur = conn.cursor(dictionary=True)
 
     cur.execute("SELECT camera.camera_id, AVG(analysis.detected_vehicles) AS avg_vehicles FROM camera " \
-    "INNER JOIN photo ON camera.camera_id = photo.camera_id " \
-    "INNER JOIN analysis ON photo.photo_id = analysis.photo_id " \
-    "WHERE photo.photo_time >= %s AND photo.photo_time < %s " \
+    "LEFT JOIN photo ON camera.camera_id = photo.camera_id " \
+        "AND photo.photo_time >= %s " \
+        "AND photo.photo_time < %s " \
+    "LEFT JOIN analysis ON analysis.photo_id = photo.photo_id " \
     "GROUP BY camera.camera_id", (start_time, end_time,))
+
 
     result = cur.fetchall()
     cur.close()
