@@ -37,7 +37,7 @@ async function render_graph(camera, date)
         title: { text: "Hour", style: {fontSize: '15px'} }
     },
     yaxis: {
-        title: { text: "Vehicles in image (average)", style: {fontSize: '15px'} }
+        title: { text: "Vehicles in images on average", style: {fontSize: '15px'} }
             }
     }
     chart = new ApexCharts(document.querySelector('#chart'), options)
