@@ -2,7 +2,7 @@ const slider_input = document.getElementById("time_slider")
 const slider_output_p = document.getElementById("output_text")
 const slider_date_select = document.getElementById("date_select")
 const lowIntensity = 3.5
-const mediumIntensity = 5.5
+const mediumIntensity = 7.5
 
 
 slider_output_p.textContent = slider_input.value;
