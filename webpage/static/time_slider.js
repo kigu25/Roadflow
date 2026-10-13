@@ -19,18 +19,17 @@ slider_input.addEventListener("input", (selected_value) => {
 
 
 slider_input.addEventListener("change", (send_value) => {
-    const inputValue = send_value.target.value;
-    const queryDate = slider_date_select.value
-
-    const date_obj = new Date(queryDate + "T00:00")
-    date_obj.setMinutes(Number(inputValue))
-
-    update_heatmap(date_obj)
+    update_heatmap()
 })
 
 
 
-async function update_heatmap(date_obj) {
+async function update_heatmap() {
+    const inputValue = slider_input.value;
+    const queryDate = slider_date_select.value
+
+    const date_obj = new Date(queryDate + "T00:00")
+    date_obj.setMinutes(Number(inputValue))
 
     //Turning the date_obj to a ISO string so python can interpret it 
     const params = new URLSearchParams({date_object: date_obj.toISOString()})
