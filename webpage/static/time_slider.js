@@ -3,7 +3,6 @@ const slider_output_p = document.getElementById("output_text")
 const slider_date_select = document.getElementById("date_select")
 const lowIntensity = 3.5
 const mediumIntensity = 5.5
-const noIntensity = 0.03
 
 
 slider_output_p.textContent = slider_input.value;
@@ -50,8 +49,10 @@ function intensityRulesMapCircles(cameraValues, circle_marker_dict)
 
     for(const camera of cameraValues)
     {
-        if(camera.avg_vehicles < noIntensity){
-            circle_marker_dict[camera.camera_id].setStyle({ fillOpacity: 0.4, fillColor : "#404040" });
+        if(camera.avg_vehicles == null)
+        {
+            //TODO: This should change the camera-icon to show not availabel aswell, not only radius
+            circle_marker_dict[camera.camera_id].setStyle({ fillOpacity: 0.4, fillColor : "#D1199B" });
         }
 
         else if(camera.avg_vehicles <= lowIntensity){
