@@ -1,6 +1,9 @@
 const slider_input = document.getElementById("time_slider")
 const slider_output_p = document.getElementById("output_text")
 const slider_date_select = document.getElementById("date_select")
+const lowIntensity = 3.5
+const mediumIntensity = 5.5
+const noIntensity = 0.03
 
 
 slider_output_p.textContent = slider_input.value;
@@ -34,7 +37,34 @@ async function update_heatmap() {
     //Turning the date_obj to a ISO string so python can interpret it 
     const params = new URLSearchParams({date_object: date_obj.toISOString()})
     const resp = await fetch(`/endpoints/get/intensity/heatmap/time/date?${params}`)
-    const values = await resp.json()
+    const cameraValuesIntensity = await resp.json()
 
-    console.log(values)
+    console.log(cameraValuesIntensity)
+
+    intensityRulesMapCircles(cameraValuesIntensity, circle_marker_dict);
+}
+
+
+function intensityRulesMapCircles(cameraValues, circle_marker_dict)
+{
+
+    for(const camera of cameraValues)
+    {
+        if(camera.avg_vehicles < noIntensity){
+            circle_marker_dict[camera.camera_id].setStyle({ fillOpacity: 0.4, fillColor : "#404040" });
+        }
+
+        else if(camera.avg_vehicles <= lowIntensity){
+            circle_marker_dict[camera.camera_id].setStyle({ fillOpacity: 0.6, fillColor : "#22C55E" });
+        }
+
+        else if(camera.avg_vehicles <= mediumIntensity)
+        {
+            circle_marker_dict[camera.camera_id].setStyle({ fillOpacity: 0.6, fillColor : "#F59E0B" });
+        }
+
+        else{
+            circle_marker_dict[camera.camera_id].setStyle({ fillOpacity: 0.6, fillColor : "#EF4444" });
+        }
+    }
 }
