@@ -3,6 +3,13 @@ const map_slider_date_select = document.getElementById("date_select")
 const circle_marker_dict = {}
 
 
+const camera_icon = L.icon({
+    iconUrl: "/static/icons/video.svg",
+    iconSize: [27, 55],
+})
+
+
+
 L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_46bu_1_51611b2dfbf363bc33bc24dd',  {
     subdomains: 'abcd',
     maxZoom: 16,
@@ -33,7 +40,8 @@ async function LoadCamerasAndMarkersOnMap()
                 fillOpacity: 0
             }).addTo(map);
 
-            const marker = L.marker([camera.latitude, camera.longitude])
+
+            const marker = L.marker([camera.latitude, camera.longitude], {icon: camera_icon})
                 .addTo(map)
                 .bindPopup(camera.camera_name);
             
