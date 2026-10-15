@@ -38,8 +38,6 @@ async function update_heatmap() {
     const resp = await fetch(`/endpoints/get/intensity/heatmap/time/date?${params}`)
     const cameraValuesIntensity = await resp.json()
 
-    console.log(cameraValuesIntensity)
-
     intensityRulesMapCircles(cameraValuesIntensity, circle_marker_dict);
 }
 
@@ -63,7 +61,7 @@ function intensityRulesMapCircles(cameraValues, circle_marker_dict)
         {
             circle.setStyle({ fillOpacity: 0.8, fillColor : "grey" });
             marker.setIcon(unavailable_camera_icon)
-            marker.setPopupContent(`<h4>${camera.camera_name}</h4><p>was unavailable during selected time-window.</p>
+            marker.setPopupContent(`<h4>${camera.camera_name}</h4><p> Camera was unavailable during selected time-window.</p>
                 `)
             continue;
         }

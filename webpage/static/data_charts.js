@@ -51,7 +51,6 @@ async function detections_for_graph(camera, date)
     const parameters = new URLSearchParams({camera_name: camera.camera_name, date: date})
     const response1 = await fetch(`/endpoints/get/detections/for/graph/date?${parameters}`)
     const hours_detections = await response1.json()
-    console.log(hours_detections)
     const hourList = []
     const detectionList = []
 
