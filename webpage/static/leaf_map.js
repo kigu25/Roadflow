@@ -49,7 +49,7 @@ async function LoadCamerasAndMarkersOnMap()
 
             const marker = L.marker([camera.latitude, camera.longitude], {icon: camera_icon})
                 .addTo(map)
-                .bindPopup(camera.camera_name);
+                .bindPopup(camera.camera_name, { maxWidth: 600, minWidth: 550});
             
             marker.on("click", () => {
                 showCameraDetails(camera); 
