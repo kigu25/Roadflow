@@ -85,6 +85,24 @@ def get_latest_img_query(camera_name):
     return img_filepath
 
 
+def get_latest_img_for_time_frame(camera_name, end_time):
+    conn = get_connection()
+    cur = conn.cursor(dictionary=True)
+
+    cur.execute("SELECT photo.original_filepath " \
+        "FROM photo " \
+        "INNER JOIN camera ON photo.camera_id = camera.camera_id " \
+            "WHERE camera.camera_name = %s " \
+            "AND photo.photo_time < %s " \
+        "ORDER BY photo_time DESC " \
+        "LIMIT 1", (camera_name, end_time,))
+
+    img_filepath = cur.fetchone()
+    cur.close()
+    conn.close()
+
+    return img_filepath
+
 
 def get_vehicles_per_hour_based_on_date(camera_name, date):
     
