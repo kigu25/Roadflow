@@ -52,7 +52,7 @@ function intensityRulesMapCircles(cameraValues, circle_marker_dict)
         if(camera.avg_vehicles == null)
         {
             //TODO: This should change the camera-icon to show not availabel aswell, not only radius
-            circle_marker_dict[camera.camera_id].setStyle({ fillOpacity: 0.4, fillColor : "#D1199B" });
+            circle_marker_dict[camera.camera_id].setStyle({ fillOpacity: 0.8, fillColor : "grey" });
         }
 
         else if(camera.avg_vehicles <= lowIntensity){
