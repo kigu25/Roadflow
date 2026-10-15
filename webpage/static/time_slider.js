@@ -18,10 +18,9 @@ slider_input.addEventListener("input", (selected_value) => {
 })
 
 
-
-slider_input.addEventListener("change", (send_value) => {
-    update_heatmap()
-})
+// Event listeners for when slider or date is changed.
+slider_input.addEventListener("change", (update_heatmap))
+slider_date_select.addEventListener("change", (update_heatmap))
 
 
 
@@ -61,7 +60,7 @@ function intensityRulesMapCircles(cameraValues, circle_marker_dict, date_obj)
         camerasOnMapDict[camera.camera_id].setIcon(camera_icon);
         available_popup(camera, marker, date_obj)
 
-        
+
         if(camera.avg_vehicles <= lowIntensity){
             circle.setStyle({ fillOpacity: 0.6, fillColor : "#22C55E" });
         }
