@@ -49,26 +49,29 @@ function intensityRulesMapCircles(cameraValues, circle_marker_dict)
 
     for(const camera of cameraValues)
     {
+        const circle = circle_marker_dict[camera.camera_id];
+        const marker = camerasOnMapDict[camera.camera_id];
+
         if(camera.avg_vehicles == null)
         {
-            circle_marker_dict[camera.camera_id].setStyle({ fillOpacity: 0.8, fillColor : "grey" });
-            camerasOnMapDict[camera.camera_id].setIcon(unavailable_camera_icon)
+            circle.setStyle({ fillOpacity: 0.8, fillColor : "grey" });
+            marker.setIcon(unavailable_camera_icon)
             continue;
         }
+        
         camerasOnMapDict[camera.camera_id].setIcon(camera_icon);
 
         if(camera.avg_vehicles <= lowIntensity){
-            circle_marker_dict[camera.camera_id].setStyle({ fillOpacity: 0.6, fillColor : "#22C55E" });
-            camerasOnMapDict[camera.camera_id].setIcon(camera_icon);
+            circle.setStyle({ fillOpacity: 0.6, fillColor : "#22C55E" });
         }
 
         else if(camera.avg_vehicles <= mediumIntensity)
         {
-            circle_marker_dict[camera.camera_id].setStyle({ fillOpacity: 0.6, fillColor : "#F59E0B" });
+            circle.setStyle({ fillOpacity: 0.6, fillColor : "#F59E0B" });
         }
 
         else{
-            circle_marker_dict[camera.camera_id].setStyle({ fillOpacity: 0.6, fillColor : "#EF4444" });
+            circle.setStyle({ fillOpacity: 0.6, fillColor : "#EF4444" });
         }
     }
 }
