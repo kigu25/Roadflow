@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request, send_file
 from webpage.db_queries import get_all_camera_data_query, get_latest_img_query, get_avg_detections_per_day
 from webpage.db_queries import get_max_detections_camera, get_vehicles_per_hour_based_on_date, get_data_heatmap, get_latest_img_for_time_frame
+from webpage.db_queries import check_for_data_gap_in_timewindow
 from datetime import datetime, timedelta
 endpoint_route = Blueprint('endpoints', __name__, url_prefix="/endpoints")
 
@@ -65,3 +66,14 @@ def get_intensity_for_heatmap():
     end_time = start_time + timedelta(minutes=15)
 
     return jsonify(get_data_heatmap(start_time, end_time))
+
+
+@endpoint_route.route("/get/datagaps/time/date")
+def get_data_gaps_for_timedate():
+    camera_id = request.args.get("camera_id")
+    date_object = request.args.get("date_object")
+
+    formated_date_time = datetime.fromisoformat(date_object)
+    start_time = formated_date_time.replace(tzinfo=None)
+    end_time = start_time + timedelta(minutes=15)
+    return jsonify(check_for_data_gap_in_timewindow(camera_id, start_time, end_time))
