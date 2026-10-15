@@ -150,3 +150,8 @@ label {
 #chart{
     width: 100%;
 }
+
+.popup-img{
+    width: 600px;
+    height: auto;
+}
