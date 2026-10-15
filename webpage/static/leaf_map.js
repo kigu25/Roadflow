@@ -1,10 +1,16 @@
 const map = L.map('leaf_map').setView([56.68, 12.87], 8);
 const map_slider_date_select = document.getElementById("date_select")
 const circle_marker_dict = {}
+const camerasOnMapDict = {}
 
 
 const camera_icon = L.icon({
     iconUrl: "/static/icons/video.svg",
+    iconSize: [27, 55],
+})
+
+const unavailable_camera_icon = L.icon({
+    iconUrl: "/static/icons/video-off.svg",
     iconSize: [27, 55],
 })
 
@@ -52,6 +58,7 @@ async function LoadCamerasAndMarkersOnMap()
 
             //Add the camera_id and the circle-object to the same dict so it can be used later to get the circle-object by camera_id.
             circle_marker_dict[camera.camera_id] = circle_heat
+            camerasOnMapDict[camera.camera_id] = marker
 
         }
     } catch (errorMsg){
