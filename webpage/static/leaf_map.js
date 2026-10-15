@@ -56,6 +56,20 @@ async function LoadCamerasAndMarkersOnMap()
                 render_graph(camera, map_slider_date_select.value);
             });
 
+            marker.on("popupopen", async () => {
+                const params = new URLSearchParams({camera_name: camera.camera_name, date_object: current_time_window.toISOString()});
+                const data_gap = await check_data_gap_timewindow(params)
+
+                if(data_gap != null)
+                {
+                    const gapElement = document.querySelector(".data_gap_popup");
+                    if (gapElement) {
+                        gapElement.textContent = `There is a data-gap in this time-window. This means that the data could be displayed incorrectly.`;
+                    }
+                }
+
+            })
+
             //Add the camera_id and the circle-object to the same dict so it can be used later to get the circle-object by camera_id.
             circle_marker_dict[camera.camera_id] = circle_heat
             camerasOnMapDict[camera.camera_id] = marker
