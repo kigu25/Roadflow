@@ -98,7 +98,7 @@ def get_vehicles_per_hour_based_on_date(camera_name, date):
                 "INNER JOIN analysis ON analysis.photo_id = photo.photo_id " \
                 "INNER JOIN camera ON camera.camera_id = photo.camera_id " \
                 "WHERE camera_name = %s " \
-                "AND DATE(photo.photo_time) = %s" \
+                "AND DATE(photo.photo_time) = %s " \
                 "GROUP BY photo_hour " \
                 "ORDER BY photo_hour", (camera_name, date))
     
