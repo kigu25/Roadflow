@@ -3,6 +3,7 @@ const slider_output_p = document.getElementById("output_text")
 const slider_date_select = document.getElementById("date_select")
 const lowIntensity = 3.5
 const mediumIntensity = 7.5
+let current_time_window = null
 
 
 slider_output_p.textContent = slider_input.value;
@@ -30,6 +31,7 @@ async function update_heatmap() {
 
     const date_obj = new Date(queryDate + "T00:00")
     date_obj.setMinutes(Number(inputValue))
+    current_time_window = date_obj
 
     //Turning the date_obj to a ISO string so python can interpret it 
     const params = new URLSearchParams({date_object: date_obj.toISOString()})
@@ -53,7 +55,7 @@ function intensityRulesMapCircles(cameraValues, circle_marker_dict, date_obj)
         {
             circle.setStyle({ fillOpacity: 0.8, fillColor : "grey" });
             marker.setIcon(unavailable_camera_icon)
-            unavailable_popup(camera, marker)
+            unavailable_popup(camera, marker, date_obj)
             continue;
         }
         
