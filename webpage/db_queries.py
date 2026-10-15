@@ -149,3 +149,19 @@ def get_data_heatmap(start_time, end_time):
     conn.close()
 
     return result
+
+
+def check_for_data_gap_in_timewindow(camera_id, start_time, end_time):
+    conn = get_connection()
+    cur = conn.cursor(dictionary=True)
+
+    cur.execute("SELECT camera_id, gap_id, reason FROM data_gap " \
+    "WHERE camera_id = %s " \
+    "AND gap_start >= %s " \
+    "AND gap_end < %s", (camera_id, start_time, end_time,))
+
+    gaps = cur.fetchone()
+    cur.close()
+    conn.close()
+
+    return gaps
