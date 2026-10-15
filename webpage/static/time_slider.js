@@ -50,7 +50,7 @@ function intensityRulesMapCircles(cameraValues, circle_marker_dict)
     const queryDate = slider_date_select.value
     const date_obj = new Date(queryDate + "T00:00")
     date_obj.setMinutes(Number(inputValue))
-    
+
     for(const camera of cameraValues)
     {
         
@@ -71,7 +71,7 @@ function intensityRulesMapCircles(cameraValues, circle_marker_dict)
         camerasOnMapDict[camera.camera_id].setIcon(camera_icon);
         marker.setPopupContent(`<h4>${camera.camera_name}</h4>
             <p>AVG vehicles per image in time-window: ${camera.avg_vehicles}</p>
-            <img src='/endpoints/get/latest/imge/timeframe?${params}'>`
+            <img src='/endpoints/get/latest/imge/timeframe?${params}' class="popup-img">`
         )
 
         if(camera.avg_vehicles <= lowIntensity){
