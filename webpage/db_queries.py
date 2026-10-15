@@ -131,28 +131,6 @@ def get_vehicles_per_hour_based_on_date(camera_name, date):
     return hours
 
 
-
-#Currently not used. Might use later on or might get deleted
-def get_historical_data_per_hour(camera_name):
-    conn = get_connection()
-    cur = conn.cursor(dictionary=True)
-
-    cur.execute("SELECT HOUR(photo.photo_time) AS photo_hour, " \
-                        "ROUND(AVG(analysis.detected_vehicles) ,1) AS avg_vehicles, " \
-                        "MAX(analysis.detected_vehicles) AS max_vehicles " \
-                "FROM photo " \
-                "INNER JOIN analysis ON analysis.photo_id = photo.photo_id " \
-                "INNER JOIN camera ON camera.camera_id = photo.camera_id " \
-                "WHERE camera.camera_name = %s " \
-                "GROUP BY photo_hour " \
-                "ORDER BY photo_hour", (camera_name,))
-    res = cur.fetchall()
-    cur.close()
-    conn.close()
-    return res
-
-
-
 def get_data_heatmap(start_time, end_time):
     conn = get_connection()
     cur = conn.cursor(dictionary=True)
