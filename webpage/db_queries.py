@@ -151,14 +151,17 @@ def get_data_heatmap(start_time, end_time):
     return result
 
 
-def check_for_data_gap_in_timewindow(camera_id, start_time, end_time):
+def check_for_data_gap_in_timewindow(camera_name, start_time, end_time):
     conn = get_connection()
     cur = conn.cursor(dictionary=True)
 
-    cur.execute("SELECT camera_id, gap_id, reason FROM data_gap " \
-    "WHERE camera_id = %s " \
-    "AND gap_start >= %s " \
-    "AND gap_end < %s", (camera_id, start_time, end_time,))
+    cur.execute("SELECT gap_id, reason FROM data_gap " \
+    "INNER JOIN camera ON camera.camera_id = data_gap.camera_id " \
+    "WHERE camera.camera_name = %s " \
+        "AND gap_start < %s " \
+        "AND (data_gap.gap_end IS NULL OR data_gap.gap_end > %s) " \
+    "ORDER BY data_gap.gap_start DESC " \
+    "LIMIT 1", (camera_name, end_time, start_time,))
 
     gaps = cur.fetchone()
     cur.close()
