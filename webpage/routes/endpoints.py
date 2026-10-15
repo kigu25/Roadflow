@@ -70,7 +70,7 @@ def get_intensity_for_heatmap():
 
 @endpoint_route.route("/get/datagaps/time/date")
 def get_data_gaps_for_timedate():
-    camera_id = request.args.get("camera_id")
+    camera_id = request.args.get("camera_name")
     date_object = request.args.get("date_object")
 
     formated_date_time = datetime.fromisoformat(date_object)
