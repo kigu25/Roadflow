@@ -19,6 +19,28 @@ function available_popup(camera, marker, date_obj)
         )
 }
 
+
+async function fill_popups(camera, popupElement)
+{
+    const params = new URLSearchParams({camera_name: camera.camera_name, date_object: current_time_window.toISOString()});
+
+    const [data_gap, all_detections] = await Promise.all([
+        check_data_gap_timewindow(params),
+        get_all_detections_for_popup(params)
+    ]);
+
+    const gapElement = popupElement?.querySelector(".data_gap_popup");
+    if(gapElement && data_gap != null){
+        gapElement.textContent = `There is a data-gap in this time-window. This means that data is partly missing for this time-window.`;
+    }
+
+     const allDetectionsElement = popupElement?.querySelector(".all_detections_popup");
+     if(allDetectionsElement && all_detections != null)
+     {
+        allDetectionsElement.textContent = `Total number of vehicles in time-window: ${all_detections.detected_vehicles}`
+     }
+}
+
 async function check_data_gap_timewindow(params){
     
     const res = await fetch(`/endpoints/get/datagaps/time/date?${params}`)
@@ -26,7 +48,7 @@ async function check_data_gap_timewindow(params){
     return data_gap_dict
 }
 
-async function get_popup_data_for_camera(params)
+async function get_all_detections_for_popup(params)
 {
     const response = await fetch(`/endpoints/get/all/detections/camera/time?${params}`)
     const all_detections = await response.json()
