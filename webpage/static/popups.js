@@ -15,7 +15,9 @@ function available_popup(camera, marker, date_obj)
             <p>AVG vehicles in time-window: ${camera.avg_vehicles}</p>
             <p class='all_detections_popup'></p>
             <h4 class="data_gap_popup"></h4>
-            <img src='/endpoints/get/latest/imge/timeframe?${params}' class="popup-img">`
+            <a href='/endpoints/get/latest/imge/timeframe?${params}' target='_blank' rel='noopener'>
+                <img src='/endpoints/get/latest/imge/timeframe?${params}' class="popup-img">
+            </a>`
         )
 }
 
@@ -37,7 +39,7 @@ async function fill_popups(camera, popupElement)
      const allDetectionsElement = popupElement?.querySelector(".all_detections_popup");
      if(allDetectionsElement && all_detections != null)
      {
-        allDetectionsElement.textContent = `Total number of vehicles in time-window: ${all_detections.detected_vehicles}`
+        allDetectionsElement.textContent = `Vehicles in selected time-window: ${all_detections.detected_vehicles}`
      }
 }
 
