@@ -64,7 +64,7 @@ async function LoadCamerasAndMarkersOnMap()
                 {
                     const gapElement = document.querySelector(".data_gap_popup");
                     if (gapElement) {
-                        gapElement.textContent = `There is a data-gap in this time-window. This means that the data could be displayed incorrectly.`;
+                        gapElement.textContent = `There is a data-gap in this time-window. This means that data is partly missing for this time-window.`;
                     }
                 }
 
@@ -75,10 +75,10 @@ async function LoadCamerasAndMarkersOnMap()
             camerasOnMapDict[camera.camera_id] = marker
 
         }
+        update_heatmap()
     } catch (errorMsg){
         console.error("ERROR. Could not get cameras. code:", errorMsg);
     }
-    update_heatmap()
 }
 
 
