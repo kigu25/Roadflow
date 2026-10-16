@@ -67,6 +67,30 @@ def get_max_detections_camera(camera_name):
     return max_detected
 
 
+
+def get_all_detections_camera_timeframe(camera_name, start_time, end_time):
+    conn = get_connection()
+    cur = conn.cursor(dictionary=True)
+
+    cur.execute("SELECT SUM(analysis.detected_vehicles) AS detected_vehicles " \
+    "FROM analysis " \
+    "INNER JOIN photo ON analysis.photo_id = photo.photo_id " \
+    "INNER JOIN camera ON photo.camera_id = camera.camera_id " \
+    "WHERE camera.camera_name = %s " \
+        "AND photo.photo_time >= %s " \
+        "AND photo.photo_time < %s ", (camera_name, start_time, end_time,))
+    
+    all_detections = cur.fetchone()
+    
+    cur.close()
+    conn.close()
+    
+    all_detections['detected_vehicles'] = float(all_detections['detected_vehicles'])
+
+    return all_detections
+
+
+
 def get_latest_img_query(camera_name):
     conn = get_connection()
     cur = conn.cursor(dictionary=True)
