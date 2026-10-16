@@ -56,19 +56,7 @@ async function LoadCamerasAndMarkersOnMap()
                 render_graph(camera, map_slider_date_select.value);
             });
 
-            marker.on("popupopen", async () => {
-                const params = new URLSearchParams({camera_name: camera.camera_name, date_object: current_time_window.toISOString()});
-                const data_gap = await check_data_gap_timewindow(params)
-
-                if(data_gap != null)
-                {
-                    const gapElement = document.querySelector(".data_gap_popup");
-                    if (gapElement) {
-                        gapElement.textContent = `There is a data-gap in this time-window. This means that data is partly missing for this time-window.`;
-                    }
-                }
-
-            })
+            marker.on("popupopen", (event) => fill_popups(camera, event.popup.getElement())) 
 
             //Add the camera_id and the circle-object to the same dict so it can be used later to get the circle-object by camera_id.
             circle_marker_dict[camera.camera_id] = circle_heat
