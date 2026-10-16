@@ -78,6 +78,7 @@ async function LoadCamerasAndMarkersOnMap()
     } catch (errorMsg){
         console.error("ERROR. Could not get cameras. code:", errorMsg);
     }
+    update_heatmap()
 }
 
 
