@@ -20,8 +20,8 @@ async function showCameraDetails(camera)
     camera_trafikverket_id_p.textContent = `TrafikverketID: ${camera.trafikverket_id}`;
     camera_latitude_p.textContent = `Latitude: ${camera.latitude}`;
     camera_longitude_p.textContent = `Longitude: ${camera.longitude}`;
-    avg_p.textContent = `Average detections per day: ${avg_detections.avg_detections_day}`
-    max_p.textContent = `Camera max detections: ${max_detections.max_detection_value}`
+    avg_p.textContent = `Average vehicles per image (whole data-period): ${avg_detections.avg_detections_day}`
+    max_p.textContent = `Camera max detections (whole data-period): ${max_detections.max_detection_value}`
 
     img_box.src = `/endpoints/get/latest/img?camera_name=${encodeURIComponent(camera.camera_name)}`
 
