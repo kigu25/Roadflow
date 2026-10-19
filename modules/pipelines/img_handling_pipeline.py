@@ -32,7 +32,7 @@ def img_handling_pipeline():
 
             if latest_timestamp is not None and photo_time_obj <= latest_timestamp:
                 print(f"Camera with id: {camera_id} has stopped updating. Logging data_gap in DB.")
-                data_gap_queries.create_gap(camera_id, "Timestamp not updated.")
+                data_gap_queries.create_gap(camera_id, "Duplicate timestamps, image not updated.")
                 continue
 
 
@@ -68,6 +68,6 @@ def img_handling_pipeline():
             try:
                 data_gap_queries.create_gap(camera_id, "pipeline error.")
             except Exception as db_erorr:
-                print(f"Could not log data_gap. CODE: {db_erorr}")
+                print(f"No DB connection. Could not log data_gap. CODE: {db_erorr}")
 
             continue
