@@ -31,6 +31,8 @@ async function update_heatmap() {
 
     const date_obj = new Date(queryDate + "T00:00")
     date_obj.setMinutes(Number(inputValue))
+
+    //Setting the global 'current_time_window' To current date_obj to be used in other parts of software.
     current_time_window = date_obj
 
     //Turning the date_obj to a ISO string so python can interpret it 
@@ -41,7 +43,7 @@ async function update_heatmap() {
     intensityRulesMapCircles(cameraValuesIntensity, circle_marker_dict, date_obj);
 }
 
-
+//TODO: Change function name
 function intensityRulesMapCircles(cameraValues, circle_marker_dict, date_obj)
 {
  
@@ -59,6 +61,7 @@ function intensityRulesMapCircles(cameraValues, circle_marker_dict, date_obj)
             continue;
         }
         
+        //If theres data for camera. Set icon to available and change pop-up to available version.
         camerasOnMapDict[camera.camera_id].setIcon(camera_icon);
         available_popup(camera, marker, date_obj)
 
