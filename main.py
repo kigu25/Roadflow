@@ -35,7 +35,7 @@ def main():
                 print(f"TIME: {err_time}. Could not complete a full run of the pipeline, retrying after sleep. CODE:{exc}")
             itteration_time = datetime.now()
             print(f"{itteration_time} itteration complete. Now entering sleep.")
-            time.sleep(240)
+            time.sleep(180)
 
 
     #If main is called with the flag --webpage, the webpage starts running on localhost
