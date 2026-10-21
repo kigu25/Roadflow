@@ -14,7 +14,7 @@ slider_input.addEventListener("input", (selected_value) => {
     const minutes = inputValue % 60;
     const queryDate = slider_date_select.value
 
-    //Checks if hours < 2, add an zero at start, same for minutes. So 9:00 -> 09:00 and so on
+    //Checks number of zeros. adds an zero at start, same for minutes. So 9:00 -> 09:00. If there are < 2 zeros ogirinal.
     slider_output_p.textContent = String(hours).padStart(2, "0") + ":" + String(minutes).padStart(2, "0");
 })
 
@@ -40,13 +40,13 @@ async function update_heatmap() {
     const resp = await fetch(`/endpoints/get/intensity/heatmap/time/date?${params}`)
     const cameraValuesIntensity = await resp.json()
 
-    intensityRulesMapCircles(cameraValuesIntensity, circle_marker_dict, date_obj);
+    changeHeatmapIntensity(cameraValuesIntensity, circle_marker_dict, date_obj);
 }
 
-//TODO: Change function name
-function intensityRulesMapCircles(cameraValues, circle_marker_dict, date_obj)
+
+
+function changeHeatmapIntensity(cameraValues, circle_marker_dict, date_obj)
 {
- 
     for(const camera of cameraValues)
     {
         const circle = circle_marker_dict[camera.camera_id];
