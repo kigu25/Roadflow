@@ -85,6 +85,9 @@ def get_all_detections_camera_timeframe(camera_name, start_time, end_time):
     cur.close()
     conn.close()
     
+    if all_detections['detected_vehicles'] is None:
+        return all_detections
+    
     all_detections['detected_vehicles'] = float(all_detections['detected_vehicles'])
 
     return all_detections
