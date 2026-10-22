@@ -46,6 +46,10 @@ async function fill_popups(camera, popupElement)
 async function check_data_gap_timewindow(params){
     
     const res = await fetch(`/endpoints/get/datagaps/time/date?${params}`)
+    if(!res.ok)
+    {
+        return null;
+    }
     const data_gap_dict = await res.json()
     return data_gap_dict
 }
