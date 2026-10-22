@@ -3,6 +3,8 @@ const slider_output_p = document.getElementById("output_text")
 const slider_date_select = document.getElementById("date_select")
 const lowIntensity = 3.5
 const mediumIntensity = 7.5
+
+//This global is used in other files/modules to get the correct time-frame.
 let current_time_window = null
 
 
@@ -12,7 +14,6 @@ slider_input.addEventListener("input", (selected_value) => {
     const inputValue = selected_value.target.value;
     const hours = Math.floor(inputValue/60);
     const minutes = inputValue % 60;
-    const queryDate = slider_date_select.value
 
     //Checks number of zeros. adds an zero at start, same for minutes. So 9:00 -> 09:00. If there are < 2 zeros ogirinal.
     slider_output_p.textContent = String(hours).padStart(2, "0") + ":" + String(minutes).padStart(2, "0");
@@ -32,7 +33,7 @@ async function update_heatmap() {
     const date_obj = new Date(queryDate + "T00:00")
     date_obj.setMinutes(Number(inputValue))
 
-    //Setting the global 'current_time_window' To current date_obj to be used in other parts of software.
+    //Setting the global 'current_time_window' to current date_obj.
     current_time_window = date_obj
 
     //Turning the date_obj to a ISO string so python can interpret it 
@@ -62,7 +63,7 @@ function changeHeatmapIntensity(cameraValues, circle_marker_dict)
         }
         
         //If theres data for camera. Set icon to available and change pop-up to available version.
-        camerasOnMapDict[camera.camera_id].setIcon(camera_icon);
+        marker[camera.camera_id].setIcon(camera_icon);
         available_popup(camera, marker)
 
 
