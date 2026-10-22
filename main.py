@@ -1,5 +1,5 @@
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from run_setup import run_setup
 import argparse
@@ -24,18 +24,26 @@ def main():
         print("Successful setup")
         return
 
+
     #If main is called with the flag --pipeline, the image gathering will run on infinite.
     if args.pipeline:
         from modules.pipelines.img_handling_pipeline import img_handling_pipeline
+        fixed_polling_cadence = 150
+
         while True:
+            start_iteration_time = datetime.now()
             try:
                 img_handling_pipeline()
+                print(f"{datetime.now()} itteration complete. Now entering sleep.")
             except Exception as exc:
-                err_time = datetime.now()
-                print(f"TIME: {err_time}. Could not complete a full run of the pipeline, retrying after sleep. CODE:{exc}")
-            itteration_time = datetime.now()
-            print(f"{itteration_time} itteration complete. Now entering sleep.")
-            time.sleep(180)
+                print(f"TIME: {datetime.now()}. Could not complete a full run of the pipeline, retrying after sleep. CODE:{exc}")
+
+            itteration_end = datetime.now()
+            tot_iteration_time_sec = (itteration_end - start_iteration_time).total_seconds()
+            time_to_sleep = max(0, fixed_polling_cadence - tot_iteration_time_sec)
+
+            time.sleep(time_to_sleep)
+
 
 
     #If main is called with the flag --webpage, the webpage starts running on localhost
