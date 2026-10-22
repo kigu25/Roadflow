@@ -38,14 +38,14 @@ async function update_heatmap() {
     //Turning the date_obj to a ISO string so python can interpret it 
     const params = new URLSearchParams({date_object: date_obj.toISOString()})
     const resp = await fetch(`/endpoints/get/intensity/heatmap/time/date?${params}`)
-    const cameraValuesIntensity = await resp.json()
+    const cameraIntensity = await resp.json()
 
-    changeHeatmapIntensity(cameraValuesIntensity, circle_marker_dict, date_obj);
+    changeHeatmapIntensity(cameraIntensity, circle_marker_dict);
 }
 
 
 
-function changeHeatmapIntensity(cameraValues, circle_marker_dict, date_obj)
+function changeHeatmapIntensity(cameraValues, circle_marker_dict)
 {
     for(const camera of cameraValues)
     {
@@ -57,13 +57,13 @@ function changeHeatmapIntensity(cameraValues, circle_marker_dict, date_obj)
         {
             circle.setStyle({ fillOpacity: 0.8, fillColor : "grey" });
             marker.setIcon(unavailable_camera_icon)
-            unavailable_popup(camera, marker, date_obj)
+            unavailable_popup(camera, marker)
             continue;
         }
         
         //If theres data for camera. Set icon to available and change pop-up to available version.
         camerasOnMapDict[camera.camera_id].setIcon(camera_icon);
-        available_popup(camera, marker, date_obj)
+        available_popup(camera, marker)
 
 
         if(camera.avg_vehicles <= lowIntensity){

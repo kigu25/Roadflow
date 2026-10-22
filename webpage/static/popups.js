@@ -6,9 +6,9 @@ function unavailable_popup(camera, marker)
         <p> Camera was unavailable during selected time-window.</p>`)
 }
 
-function available_popup(camera, marker, date_obj)
+function available_popup(camera, marker)
 {
-    const params = new URLSearchParams({camera_name: camera.camera_name, date_object: date_obj.toISOString()})
+    const params = new URLSearchParams({camera_name: camera.camera_name, date_object: current_time_window.toISOString()})
 
     marker.setPopupContent(`
             <h3>${camera.camera_name}</h3>
