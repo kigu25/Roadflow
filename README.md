@@ -107,7 +107,7 @@ After the setup has been ran once and the message `Successful setup` appears in 
 When there are "enough" images & data collected the webpage created to visualize the data becomes useful. It is started by running main with the flag `--webpage`. 
 <br><br>
 ### Software settings
-The fixed cadence for polling images from trafikverket, is set to `180seconds`. This is controlled by time.sleep in the main(). The fixed cadence can quickly be adjusted there after needs. 
+The fixed cadence for polling images from trafikverket is set to `150 seconds`. This is enforced by storing the start-time of each image-polling iteration and calculating a total-time when the iteration is complete. For example, if one iteration of image-polling took 110 seconds, the software will sleep for 40 seconds before starting a new iteration. If an iteration took longer than 150sec, the software will not sleep but instead directly run a new iteration.
 
 The logic that controls the heatmap-coloring is found in the `time_slider.js` file. And is decided by avg_vehicles in a 15-min time-period of the global-slider. `lowIntensity` describes the treshold for low-traffic and is set to 3.5. `mediumIntensity` is set to 7.5, and everything over 7.5 is seen as high-intensity.
 
