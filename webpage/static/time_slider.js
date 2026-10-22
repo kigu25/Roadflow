@@ -59,25 +59,25 @@ function changeHeatmapIntensity(cameraValues, circle_marker_dict)
             circle.setStyle({ fillOpacity: 0.8, fillColor : "grey" });
             marker.setIcon(unavailable_camera_icon)
             unavailable_popup(camera, marker)
-            continue;
         }
-        
-        //If theres data for camera. Set icon to available and change pop-up to available version.
-        marker[camera.camera_id].setIcon(camera_icon);
-        available_popup(camera, marker)
-
-
-        if(camera.avg_vehicles <= lowIntensity){
-            circle.setStyle({ fillOpacity: 0.6, fillColor : "#22C55E" });
-        }
-
-        else if(camera.avg_vehicles <= mediumIntensity)
-        {
-            circle.setStyle({ fillOpacity: 0.6, fillColor : "#F59E0B" });
-        }
-
         else{
-            circle.setStyle({ fillOpacity: 0.6, fillColor : "#EF4444" });
+            marker.setIcon(camera_icon);
+            available_popup(camera, marker)
+
+            if(camera.avg_vehicles <= lowIntensity){
+                circle.setStyle({ fillOpacity: 0.6, fillColor : "#22C55E" });
+            } else if(camera.avg_vehicles <= mediumIntensity) {
+                circle.setStyle({ fillOpacity: 0.6, fillColor : "#F59E0B" });
+            } else{
+                circle.setStyle({ fillOpacity: 0.6, fillColor : "#EF4444" });
+            }
+        }
+
+        //Checking if there is an open popup. If that is the case the software needs to update that with new data aswell.
+        //This makes sure that new data is loaded into an already opened popup aswell.
+        if(marker.isPopupOpen())
+        {
+            fill_popups(camera, marker.getPopup().getElement());
         }
     }
 }
