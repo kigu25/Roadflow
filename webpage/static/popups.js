@@ -53,6 +53,10 @@ async function check_data_gap_timewindow(params){
 async function get_all_detections_for_popup(params)
 {
     const response = await fetch(`/endpoints/get/all/detections/camera/time?${params}`)
+    if(!response.ok)
+    {
+        return null;
+    }
     const all_detections = await response.json()
     return all_detections
 }
