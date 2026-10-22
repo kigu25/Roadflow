@@ -29,19 +29,20 @@ def main():
     if args.pipeline:
         from modules.pipelines.img_handling_pipeline import img_handling_pipeline
         fixed_polling_cadence = 150
+        print("Starting image-polling from Trafikverket.")
 
         while True:
             start_iteration_time = datetime.now()
             try:
                 img_handling_pipeline()
-                print(f"{datetime.now()} itteration complete. Now entering sleep.")
             except Exception as exc:
                 print(f"TIME: {datetime.now()}. Could not complete a full run of the pipeline, retrying after sleep. CODE:{exc}")
 
             itteration_end = datetime.now()
             tot_iteration_time_sec = (itteration_end - start_iteration_time).total_seconds()
             time_to_sleep = max(0, fixed_polling_cadence - tot_iteration_time_sec)
-
+            print(f"Iteration complete with duration of: {tot_iteration_time_sec} seconds.")
+            print(f"Now entering sleep for {time_to_sleep} seconds.")
             time.sleep(time_to_sleep)
 
 
