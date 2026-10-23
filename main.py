@@ -25,7 +25,7 @@ def main():
         return
 
 
-    #If main is called with the flag --pipeline, the image gathering will run on infinite.
+    #--pipeling flag to start image polling
     if args.pipeline:
         from modules.pipelines.img_handling_pipeline import img_handling_pipeline
         fixed_polling_cadence = 150
@@ -47,7 +47,7 @@ def main():
 
 
 
-    #If main is called with the flag --webpage, the webpage starts running on localhost
+    #--webpage flag to run the webpage on localhost
     if args.webpage:
         app = Flask(__name__, template_folder="webpage/templates", static_folder="webpage/static")
         
