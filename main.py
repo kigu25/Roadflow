@@ -28,7 +28,7 @@ def main():
     #--pipeling flag to start image polling
     if args.pipeline:
         from modules.pipelines.img_handling_pipeline import img_handling_pipeline
-        fixed_polling_cadence = 150
+        fixed_polling_cadence = 180
         print("Starting image-polling from Trafikverket.")
 
         while True:
