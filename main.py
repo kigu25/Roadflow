@@ -1,5 +1,5 @@
 import time
-from datetime import datetime, timedelta
+from datetime import datetime
 from dotenv import load_dotenv
 from run_setup import run_setup
 import argparse
@@ -24,7 +24,7 @@ def main():
         return
 
 
-    #--pipeling flag to start image polling
+    #--pipeline flag to start image polling
     if args.pipeline:
         from modules.pipelines.img_handling_pipeline import img_handling_pipeline
         fixed_polling_cadence = 180
