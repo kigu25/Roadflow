@@ -104,12 +104,12 @@ Those selected cameras are then matched against the "real" cameras from trafikve
 <br><br>
 After the setup has been ran once and the message `Successful setup` appears in the terminal, the software can be ran using the flag `--pipeline`. This will run the image_collecting and analyzing.
 <br><br>
-When there are "enough" images & data collected the webpage created to visualize the data becomes useful. It is started by running main with the flag `--webpage`. 
+When there are "enough" images & data collected the webpage beacomes useful to visualize data. The webpage is ran using `python main.py`. 
 <br><br>
 ### Software settings
-The fixed cadence for polling images from trafikverket is set to `150 seconds`. This is enforced by storing the start-time of each image-polling iteration and calculating a total-time when the iteration is complete. For example, if one iteration of image-polling took 110 seconds, the software will sleep for 40 seconds before starting a new iteration. If an iteration took longer than 150sec, the software will not sleep but instead directly run a new iteration.
+The fixed cadence for polling images from trafikverket is set to `180 seconds`. This is enforced by storing the start-time of each image-polling iteration and calculating a total-time that the latest iteration took. For example, if one iteration of image-polling took 110 seconds, the software will sleep for 70 seconds before starting a new iteration. If an iteration took longer than 180 sec, the software will not sleep but instead directly run a new iteration.
 
-The logic that controls the heatmap-coloring is found in the `time_slider.js` file. And is decided by avg_vehicles in a 15-min time-period of the global-slider. `lowIntensity` describes the treshold for low-traffic and is set to 3.5. `mediumIntensity` is set to 7.5, and everything over 7.5 is seen as high-intensity.
+The logic that controls the heatmap-coloring is found in the `time_slider.js` file. And is decided by avg_vehicles in a 15-min time-period of the global-slider. `lowIntensity` describes the threshold for low-traffic and is set to 3.5. `mediumIntensity` is set to 7.5, and everything over 7.5 is seen as high-intensity.
 
 If the `avg_vehicles` == null, the function that actually changes the colors will clearly destinguish missing data from low-intensity by making the area around the camera grey and also changing the camera icon.
 
@@ -160,8 +160,10 @@ If the `avg_vehicles` == null, the function that actually changes the colors wil
 - After a few minutes you'll have a couple new sub-folders in image_storage. Every image is saved with its corresponding analyzed image. If you then query the database there will be some data show aswell.
 
 ### Normal software-run
-- Run main with the flag `python main.py --webpage`, this will start the application's webpage.
-- In the terminal a link to localhost where the webpage will be is output. Open that link in a browser.
+- Run main without any flag `python main.py`, this will start the application's webpage.
+- In the terminal, a localhost link will be displayed. Open that link in a browser.
 - You'll now see a clickable-map with markers on it for each camera.
+- The webpage uses a global 24-hour slider with a date-select. Use that to select a timeframe, each timeframe is set to 15 min. So if 15:00 is selected, the timeframe is 15:00 -> 15:15
 - If you click on a camera-icon on the map, that camera's last images for the whole-collection window along with some data for that camera is displayed under the map.
 - If the time-slider is used and a camera is clicked a pop-up will appear that shows that cameras last image in the selected time-frame along with some data for that time-frame.
+- *If the pipeline is already running you can open a second terminal, activate the venv and run the webpage at the same time*
