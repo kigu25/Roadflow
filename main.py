@@ -14,7 +14,6 @@ def main():
     parser.add_argument("--setup", action="store_true", help="Use the flag '--setup' if it's the first software start or if a new camera " \
                             "is added in 'selected_cameras.txt'")
     parser.add_argument("--pipeline", action="store_true", help="Use this '--pipeline' flag for continious image-pipeline usage")
-    parser.add_argument("--webpage", action="store_true", help="Use this flag to run the interactive webpage")
     args = parser.parse_args()
 
 
@@ -46,18 +45,15 @@ def main():
             time.sleep(time_to_sleep)
 
 
-
-    #--webpage flag to run the webpage on localhost
-    if args.webpage:
-        app = Flask(__name__, template_folder="webpage/templates", static_folder="webpage/static")
-        
-        app.json.ensure_ascii = False
-        
-        for bp in blueprints:
-            app.register_blueprint(bp)
-            
-        app.run(host="127.0.0.1", port=5000, debug=True)
     
+    app = Flask(__name__, template_folder="webpage/templates", static_folder="webpage/static")
+    app.json.ensure_ascii = False
+    
+    for bp in blueprints:
+        app.register_blueprint(bp)
+        
+    app.run(host="127.0.0.1", port=5000, debug=True)
+
 
 
 
