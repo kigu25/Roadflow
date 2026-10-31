@@ -16,7 +16,8 @@ const unavailable_camera_icon = L.icon({
 
 
 
-L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_46bu_1_51611b2dfbf363bc33bc24dd',  {
+L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=', //Fill in your carto api key here.  
+    {
     subdomains: 'abcd',
     maxZoom: 16,
     attribution: '© CARTO basemaps'
